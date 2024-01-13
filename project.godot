@@ -17,3 +17,7 @@ config/icon="res://icon.svg"
 [dotnet]
 
 project/assembly_name="project_jim_jam"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg")
