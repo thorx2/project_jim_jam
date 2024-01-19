@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace CoreGame.GameSystems;
+
 public partial class GameManager : Node
 {
     // Called when the node enters the scene tree for the first time.
