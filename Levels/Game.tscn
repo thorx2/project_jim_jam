@@ -4,3 +4,35 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_xvxv3")
+
+[node name="GameSVP" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 160.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GameVP" type="SubViewport" parent="GameSVP"]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(160, 144)
+size_2d_override = Vector2i(960, 864)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="MasterUI" type="CanvasLayer" parent="."]
+
+[node name="RootContainer" type="Control" parent="MasterUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
