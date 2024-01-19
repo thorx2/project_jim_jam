@@ -78,29 +78,19 @@ public partial class PathDebugger : Control
             }
         }
     }
+
+    private void DrawFullPathFrom(Vector2[] path)
+    {
+        for (int i = 0; i < path.Length - 2; i++)
+        {
+            var start = path[i];
+            start.X += pathGenerator.GetNavCellSize().X / 2;
+            start.Y += pathGenerator.GetNavCellSize().Y / 2;
+            var end = path[i + 1];
+            end.X += pathGenerator.GetNavCellSize().X / 2;
+            end.Y += pathGenerator.GetNavCellSize().Y / 2;
+
+            DrawLine(start, end, Colors.CornflowerBlue, 3.0f);
+        }
+    }
 }
-
-
-// var requested_path : PackedVector2Array
-
-// func _draw() -> void:
-//     debug_draw_nav_points()
-//     if requested_path && requested_path.size() > 0:
-//         draw_full_path(requested_path)
-//         pass
-//     pass
-
-// func debug_draw_nav_points() -> void:
-//     for x : int in Debugfinder.get_nav_region_size().x:
-//         for y : int in Debugfinder.get_nav_region_size().y:
-//             var t : Vector2i = Vector2i(x,y)
-//             if Debugfinder.is_valid_navigable_point(t):
-//                 var pos : Vector2 = Debugfinder.__map_nav_mesh.get_point_position(t)
-//                 pos.x += Debugfinder.get_nav_cell_size().x / 2
-//                 pos.y += Debugfinder.get_nav_cell_size().y / 2
-//                 draw_circle(pos, 4.0,Color.WHITE)
-//                 draw_possible_connections_to(t, x, y+1)
-//                 draw_possible_connections_to(t, x+1, y)
-//                 pass
-//             pass
-//     pass
