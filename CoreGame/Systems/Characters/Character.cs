@@ -29,5 +29,9 @@ public partial class Character : CharacterBody2D
 
         Velocity = velocity;
         MoveAndSlide();
+        var currentPos = Position;
+        currentPos.X = Math.Clamp(currentPos.X, 0, GetViewportRect().Size.X);
+        currentPos.Y = Math.Clamp(currentPos.Y, 0, GetViewportRect().Size.Y);
+        Position = currentPos;
     }
 }
