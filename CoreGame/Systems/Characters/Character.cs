@@ -3,7 +3,11 @@ using System;
 
 public partial class Character : CharacterBody2D
 {
-    public const float Speed = 300.0f;
+    [Export]
+    public float Speed = 300.0f;
+
+    [Export]
+    private AnimatedSprite2D characterVisual;
 
     public override void _PhysicsProcess(double delta)
     {
