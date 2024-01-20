@@ -2,15 +2,28 @@
 	"categories": [
 		{
 			"uuid": "b97ca89a-ba33-4b82-b7f5-139ea10e0104",
-			"title": "Task",
+			"title": "Dev",
 			"color": "3895f2"
+		},
+		{
+			"uuid": "b77bff5b-8ccc-41f9-9e4b-bc0146a6c0da",
+			"title": "Art",
+			"color": "c9263f"
+		},
+		{
+			"uuid": "31def50a-f14d-4c07-98e0-29ad84ba48e9",
+			"title": "Design",
+			"color": "26e912"
 		}
 	],
 	"stages": [
 		{
 			"uuid": "95cda81d-ec4a-4a34-b23b-0d020250dcb1",
 			"title": "Todo",
-			"tasks": []
+			"tasks": [
+				"070f437d-ab00-44dc-824e-f4d761ae4842",
+				"737d69cc-59f5-436a-9559-66e064674762"
+			]
 		},
 		{
 			"uuid": "42d2d55b-f5cf-46da-a667-02a868c7d5c7",
@@ -23,7 +36,42 @@
 			"tasks": []
 		}
 	],
-	"tasks": [],
+	"tasks": [
+		{
+			"uuid": "070f437d-ab00-44dc-824e-f4d761ae4842",
+			"title": "Room and Levels",
+			"description": "Create a simple room/level loading system for when the character walks into a trigger box",
+			"category": "b97ca89a-ba33-4b82-b7f5-139ea10e0104",
+			"steps": [
+				{
+					"details": "Create Rooms",
+					"done": false
+				},
+				{
+					"details": "Add loading triggers with configurations",
+					"done": false
+				},
+				{
+					"details": "Fade out and fade back in when level is loaded",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "737d69cc-59f5-436a-9559-66e064674762",
+			"title": "Character Movement",
+			"description": "The pokemon academy style character movment with just NEWS movment",
+			"category": "b97ca89a-ba33-4b82-b7f5-139ea10e0104",
+			"steps": []
+		},
+		{
+			"uuid": "04b771a9-b720-448e-ab90-f4ce6233f7c6",
+			"title": "Game ",
+			"description": "",
+			"category": "b97ca89a-ba33-4b82-b7f5-139ea10e0104",
+			"steps": []
+		}
+	],
 	"layout": {
 		"columns": [
 			[
