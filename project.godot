@@ -21,10 +21,8 @@ Wiring="*res://addons/Wiring/Wiring.gd"
 
 [display]
 
-window/size/viewport_width=160
-window/size/viewport_height=144
-window/size/window_width_override=960
-window/size/window_height_override=864
+window/size/viewport_width=960
+window/size/viewport_height=864
 window/stretch/mode="viewport"
 
 [dotnet]
