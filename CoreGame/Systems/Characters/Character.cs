@@ -9,6 +9,13 @@ public partial class Character : CharacterBody2D
     [Export]
     private AnimatedSprite2D characterVisual;
 
+    private Vector2 spriteSize;
+
+    public override void _Ready()
+    {
+        spriteSize = characterVisual.SpriteFrames.GetFrameTexture(characterVisual.Animation, 0).GetSize();
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         Vector2 velocity = Velocity;
@@ -30,8 +37,8 @@ public partial class Character : CharacterBody2D
         Velocity = velocity;
         MoveAndSlide();
         var currentPos = Position;
-        currentPos.X = Math.Clamp(currentPos.X, 0, GetViewportRect().Size.X);
-        currentPos.Y = Math.Clamp(currentPos.Y, 0, GetViewportRect().Size.Y);
+        currentPos.X = Math.Clamp(currentPos.X, spriteSize.X / 2, GetViewportRect().Size.X - spriteSize.X / 2);
+        currentPos.Y = Math.Clamp(currentPos.Y, spriteSize.Y / 2, GetViewportRect().Size.Y - spriteSize.Y / 2);
         Position = currentPos;
     }
 }
