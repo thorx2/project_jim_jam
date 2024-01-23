@@ -133,8 +133,9 @@ y_sort_enabled = true
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_pakvf")
-Speed = 150.0
+Speed = 10.0
 characterVisual = NodePath("Visual")
+tileSize = 16
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
