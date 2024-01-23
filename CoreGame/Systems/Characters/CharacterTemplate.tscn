@@ -126,17 +126,28 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juq1y"]
+size = Vector2(15, 11)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterVisual")]
+y_sort_enabled = true
+collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_pakvf")
+Speed = 150.0
 characterVisual = NodePath("Visual")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_8sqij")
 animation = &"walk_down"
 autoplay = "walk_down"
 frame_progress = 0.449624
+offset = Vector2(0, -6)
 
 [node name="Character" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_juq1y")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -5)

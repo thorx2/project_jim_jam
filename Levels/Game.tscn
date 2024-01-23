@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://coojfiqjwdcqm"]
+[gd_scene load_steps=6 format=3 uid="uid://coojfiqjwdcqm"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_xvxv3"]
 [ext_resource type="PackedScene" uid="uid://88bll8d3m716" path="res://CoreGame/Systems/Characters/CharacterTemplate.tscn" id="2_37xtq"]
 [ext_resource type="FontFile" uid="uid://cllmd14hudgsi" path="res://Fonts/PixelifySans-Bold.ttf" id="2_86opy"]
+[ext_resource type="Script" path="res://CoreGame/Systems/LevelLoader/GameLevelManager.cs" id="2_h8g33"]
+[ext_resource type="Resource" uid="uid://lsykkbsve4ln" path="res://CoreGame/Systems/LevelLoader/FloorConfiguration/ClassRoom.tres" id="3_ttse8"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("gameViewport", "gameVPContainer")]
 script = ExtResource("1_xvxv3")
@@ -18,16 +20,23 @@ offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameVP" type="SubViewport" parent="GameSVP"]
+[node name="GameVP" type="SubViewport" parent="GameSVP" node_paths=PackedStringArray("playerCharacter", "gameplayMasterParent")]
 disable_3d = true
+transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(160, 144)
-size_2d_override = Vector2i(160, 144)
 render_target_update_mode = 4
+script = ExtResource("2_h8g33")
+gameMaps = Array[Resource]([ExtResource("3_ttse8")])
+playerCharacter = NodePath("YSortEnabler/Player")
+gameplayMasterParent = NodePath("YSortEnabler")
 
-[node name="Player" parent="GameSVP/GameVP" instance=ExtResource("2_37xtq")]
-position = Vector2(11.97, 36.975)
+[node name="YSortEnabler" type="Node2D" parent="GameSVP/GameVP"]
+y_sort_enabled = true
+
+[node name="Player" parent="GameSVP/GameVP/YSortEnabler" instance=ExtResource("2_37xtq")]
+position = Vector2(66.47, 30)
 
 [node name="MasterUI" type="CanvasLayer" parent="."]
 

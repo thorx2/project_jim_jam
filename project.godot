@@ -13,6 +13,7 @@ config_version=5
 config/name="project_jim_jam"
 run/main_scene="res://Levels/Game.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -61,7 +62,15 @@ move_up={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Character"
+2d_physics/layer_2="Wall"
+2d_physics/layer_3="BlockerProp"
+2d_physics/layer_4="PlayerTrigger"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
