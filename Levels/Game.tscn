@@ -1,15 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://coojfiqjwdcqm"]
+[gd_scene load_steps=11 format=3 uid="uid://coojfiqjwdcqm"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_xvxv3"]
 [ext_resource type="PackedScene" uid="uid://88bll8d3m716" path="res://CoreGame/Systems/Characters/CharacterTemplate.tscn" id="2_37xtq"]
 [ext_resource type="FontFile" uid="uid://cllmd14hudgsi" path="res://Fonts/PixelifySans-Bold.ttf" id="2_86opy"]
+[ext_resource type="Script" path="res://CoreGame/Systems/TilemapPathSystems/PathGenerator.cs" id="2_f66ym"]
 [ext_resource type="Script" path="res://CoreGame/Systems/LevelLoader/GameLevelManager.cs" id="2_h8g33"]
 [ext_resource type="Resource" uid="uid://lsykkbsve4ln" path="res://CoreGame/Systems/LevelLoader/FloorConfiguration/GroundFloor.tres" id="3_modyr"]
+[ext_resource type="Script" path="res://CoreGame/Systems/UI/UIManager.cs" id="6_v7p5n"]
+[ext_resource type="Theme" uid="uid://cv6ctxi60ly43" path="res://CoreGame/Systems/UI/BaseGameTheme.tres" id="8_xl3d0"]
+
+[sub_resource type="Gradient" id="Gradient_1dauh"]
+colors = PackedColorArray(0.713726, 0.313726, 0.0823529, 1, 0.713726, 0.313726, 0.0823529, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hvukl"]
+gradient = SubResource("Gradient_1dauh")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("gameViewport", "gameVPContainer")]
 script = ExtResource("1_xvxv3")
 gameViewport = NodePath("GameSVP/GameVP")
 gameVPContainer = NodePath("GameSVP")
+
+[node name="PathFinder" type="Node" parent="."]
+script = ExtResource("2_f66ym")
 
 [node name="GameSVP" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -36,7 +48,6 @@ gameplayMasterParent = NodePath("YSortEnabler")
 y_sort_enabled = true
 
 [node name="Player" parent="GameSVP/GameVP/YSortEnabler" instance=ExtResource("2_37xtq")]
-position = Vector2(66.47, 30)
 
 [node name="MasterUI" type="CanvasLayer" parent="."]
 
@@ -47,18 +58,86 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_v7p5n")
 
-[node name="Label" type="Label" parent="MasterUI/RootContainer"]
+[node name="MainMenu" type="Control" parent="MasterUI/RootContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MasterUI/RootContainer/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_hvukl")
+
+[node name="GameTitle" type="Label" parent="MasterUI/RootContainer/MainMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -40.0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -167.0
+offset_top = 140.0
+offset_right = 167.0
+offset_bottom = 196.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_86opy")
-theme_override_font_sizes/font_size = 46
-text = "Test Text"
+theme_override_font_sizes/font_size = 72
+text = "Hush Hush High"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MenuContainer" type="VBoxContainer" parent="MasterUI/RootContainer/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -90.0
+offset_right = 130.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartGame" type="Button" parent="MasterUI/RootContainer/MainMenu/MenuContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("8_xl3d0")
+theme_override_font_sizes/font_size = 36
+text = "Start Game"
+
+[node name="Mute" type="Button" parent="MasterUI/RootContainer/MainMenu/MenuContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("8_xl3d0")
+theme_override_font_sizes/font_size = 24
+text = "Mute Audio"
+
+[node name="GamePlayUI" type="Control" parent="MasterUI/RootContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 30.0
+offset_right = 320.0
+offset_bottom = 60.0
+grow_horizontal = 2

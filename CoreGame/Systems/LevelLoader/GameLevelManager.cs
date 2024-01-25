@@ -1,4 +1,5 @@
 using CoreGame.GameSystems.EventManagement;
+using CoreGame.Pathfinding;
 using Godot;
 using Godot.Collections;
 
@@ -31,14 +32,16 @@ public partial class GameLevelManager : SubViewport
         }
     }
 
-    private void OnNewLevelLoaded(Vector2 newPos)
+    private void OnNewLevelLoaded(Vector2 newPos, TileMap map)
     {
-        playerCharacter.GlobalPosition = newPos;
+        PathGenerator.GetPathGeneratorInstance.SetupGameMap(map);
+        var pointPos = PathGenerator.GetPathGeneratorInstance.GetMapPointForPosition(newPos);
+        playerCharacter.GlobalPosition = PathGenerator.GetPathGeneratorInstance.GetPointPositionCentered(pointPos);
     }
 
 
     public void LoadNewMap(PackedScene map)
     {
-        
+
     }
 }

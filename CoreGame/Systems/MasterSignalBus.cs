@@ -26,7 +26,7 @@ public class MasterSignalBus
 
     private MasterSignalBus() { }
 
-    public Action<Vector2> LevelLoadedEvent;
+    public Action<Vector2, TileMap> LevelLoadedEvent;
 
     public Action<PackedScene> LoadMapEvent;
 }
