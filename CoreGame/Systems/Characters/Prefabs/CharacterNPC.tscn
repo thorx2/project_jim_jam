@@ -82,7 +82,7 @@ gossipBubble = NodePath("Area2D")
 gossipSpreadCircle = NodePath("Area2D/CollisionShape2D")
 gossipBurstRadius = 40.0
 characterType = 2
-pathCheckCast = [NodePath("RayCast2D")]
+pathCheckCast = [NodePath("RayCast2D"), NodePath("RayCast2D_2"), NodePath("RayCast2D_3"), NodePath("RayCast2D_4")]
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -97,6 +97,15 @@ shape = SubResource("RectangleShape2D_juq1y")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 16)
+
+[node name="RayCast2D_2" type="RayCast2D" parent="."]
+target_position = Vector2(-16, 0)
+
+[node name="RayCast2D_3" type="RayCast2D" parent="."]
+target_position = Vector2(16, 0)
+
+[node name="RayCast2D_4" type="RayCast2D" parent="."]
+target_position = Vector2(0, -16)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
