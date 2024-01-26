@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5qf4xjfeqxdq"]
+[gd_scene load_steps=8 format=3 uid="uid://b5qf4xjfeqxdq"]
 
 [ext_resource type="Script" path="res://Levels/LevelController.cs" id="1_stk3n"]
 [ext_resource type="Texture2D" uid="uid://cibn4l75ntmat" path="res://_prototypeArt/Modern tiles_Free/Interiors_free_16x16.png" id="2_imrbp"]
 [ext_resource type="Texture2D" uid="uid://dks1i07e2g7u2" path="res://_prototypeArt/Modern tiles_Free/Room_Builder_free_16x16.png" id="3_ob8um"]
-[ext_resource type="PackedScene" uid="uid://np778k3nxldg" path="res://CoreGame/Systems/Characters/Prefabs/CharacterColor.tscn" id="4_18fup"]
-[ext_resource type="PackedScene" uid="uid://88bll8d3m716" path="res://CoreGame/Systems/Characters/Prefabs/CharacterGrey.tscn" id="5_4cnkb"]
+[ext_resource type="PackedScene" uid="uid://np778k3nxldg" path="res://CoreGame/Systems/Characters/Prefabs/CharacterNPC.tscn" id="4_18fup"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l43h2"]
 texture = ExtResource("2_imrbp")
@@ -4352,8 +4351,10 @@ layer_5/tile_data = PackedInt32Array(196610, 589824, 35, 262146, 589824, 36, 524
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(103, 151)
 
-[node name="CharacterGrey" parent="." instance=ExtResource("4_18fup")]
+[node name="NPCBoy" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(70, 73)
 
-[node name="CharacterGrey_2" parent="." instance=ExtResource("5_4cnkb")]
-position = Vector2(100, 73)
+[node name="NPC" parent="." instance=ExtResource("4_18fup")]
+position = Vector2(159, 122)
+characterFrame = 7
+characterType = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://coojfiqjwdcqm"]
+[gd_scene load_steps=16 format=3 uid="uid://coojfiqjwdcqm"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_xvxv3"]
 [ext_resource type="Script" path="res://CoreGame/Systems/TilemapPathSystems/PathGenerator.cs" id="2_f66ym"]
@@ -8,11 +8,25 @@
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/GameVPScaler.cs" id="3_rw1ta"]
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/UIManager.cs" id="6_v7p5n"]
 [ext_resource type="PackedScene" uid="uid://dr7vht16ow0hy" path="res://CoreGame/Systems/UI/Elements/MainMenu.tscn" id="7_h6qur"]
+[ext_resource type="Script" path="res://CoreGame/Systems/QTESystems/QteManager.cs" id="9_8plh6"]
+[ext_resource type="Theme" uid="uid://cv6ctxi60ly43" path="res://CoreGame/Systems/UI/BaseGameTheme.tres" id="10_en48v"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("gameViewport", "gameVPContainer", "gameplayParent")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u7uq"]
+bg_color = Color(0.709804, 0.34902, 0.298039, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tf7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eq6n1"]
+bg_color = Color(0.8, 0.419608, 0.168627, 1)
+
+[sub_resource type="Gradient" id="Gradient_iifkw"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_drx6o"]
+gradient = SubResource("Gradient_iifkw")
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("gameplayParent")]
 script = ExtResource("1_xvxv3")
-gameViewport = NodePath("GameSVP/GameVP")
-gameVPContainer = NodePath("GameSVP")
 playerScene = ExtResource("2_pphuu")
 gameplayParent = NodePath("GameSVP/GameVP/YSortEnabler")
 
@@ -60,7 +74,7 @@ inGameMenu = NodePath("GamePlayUI")
 [node name="MainMenu" parent="MasterUI/RootContainer" instance=ExtResource("7_h6qur")]
 layout_mode = 1
 
-[node name="GamePlayUI" type="Control" parent="MasterUI/RootContainer"]
+[node name="GamePlayUI" type="Control" parent="MasterUI/RootContainer" node_paths=PackedStringArray("currentProgressBar", "failurePlaceHolderBar")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -68,14 +82,72 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("9_8plh6")
+currentProgressBar = NodePath("CurrentSpreadBar")
+failurePlaceHolderBar = NodePath("FailureDisplay")
 
-[node name="ProgressBar" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
+[node name="FailureDisplay" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -170.0
+offset_right = 66.0
+offset_bottom = 170.0
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_5u7uq")
+max_value = 1.0
+value = 0.85
+fill_mode = 3
+show_percentage = false
+
+[node name="CurrentSpreadBar" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -170.0
+offset_right = 66.0
+offset_bottom = 170.0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_2tf7s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eq6n1")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="DayDisplay" type="Label" parent="MasterUI/RootContainer/GamePlayUI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -320.0
-offset_top = 30.0
-offset_right = 320.0
-offset_bottom = 60.0
+offset_left = -21.5
+offset_right = 21.5
+offset_bottom = 23.0
 grow_horizontal = 2
+theme = ExtResource("10_en48v")
+theme_override_font_sizes/font_size = 42
+text = "Day 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QTEWindow" type="Control" parent="MasterUI/RootContainer/GamePlayUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BG" type="TextureRect" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_drx6o")

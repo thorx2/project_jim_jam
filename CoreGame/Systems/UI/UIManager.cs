@@ -12,7 +12,9 @@ public partial class UIManager : Control
 
     public override void _Ready()
     {
-        MasterSignalBus.GetInstance.StartGame += OnGameStart;
+        MasterSignalBus.GetInstance.StartGameEvent += OnGameStart;
+        mainMenu.Visible = true;
+        inGameMenu.Visible = false;
     }
 
     private void OnGameStart()

@@ -36,5 +36,13 @@ public class MasterSignalBus
     /// </summary>
     public Action<int> LoadMapEvent;
 
-    public Action StartGame;
+    /// <summary>
+    /// Trigger to reset and start a new game, systems and configurations will reset and begin from day 1
+    /// </summary>
+    public Action StartGameEvent;
+
+
+    public Action<ECharacterType> StartQteEvent;
+
+    public Action<ECharacterType, EQteCompleteState> OnQteCompleteEvent;
 }

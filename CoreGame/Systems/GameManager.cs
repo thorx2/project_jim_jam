@@ -23,19 +23,19 @@ public partial class GameManager : Node2D
     [Export]
     private Node2D gameplayParent;
 
-    private Character playerRef = null;
+    private Player playerRef = null;
 
-    public Character GetPlayerRef
+    public Player GetPlayerRef
     {
         get => playerRef;
     }
 
-    public Character CreatePlayerCharacter()
+    public Player CreatePlayerCharacter()
     {
 
         if (playerRef == null)
         {
-            playerRef = playerScene.Instantiate() as Character;
+            playerRef = playerScene.Instantiate() as Player;
             gameplayParent.AddChild(playerRef);
         }
 
@@ -47,14 +47,22 @@ public partial class GameManager : Node2D
     public override void _Ready()
     {
         instance = this;
-        MasterSignalBus.GetInstance.StartGame += OnStartNewGame;
+        MasterSignalBus.GetInstance.StartGameEvent += OnStartNewGame;
     }
     #endregion
 
     #region Functional
     public void OnStartNewGame()
     {
-        CreatePlayerCharacter();
+        if (playerRef != null)
+        {
+            playerRef.ResetGameCharacter();
+        }
+        else
+        {
+            CreatePlayerCharacter();
+        }
+        GameRuntimeParameters.ResetGameParameters();
     }
     #endregion
 }

@@ -14,6 +14,6 @@ public partial class MainMenuController : Control
 
     private void OnStartGame()
     {
-        MasterSignalBus.GetInstance.StartGame?.Invoke();
+        MasterSignalBus.GetInstance.StartGameEvent?.Invoke();
     }
 }

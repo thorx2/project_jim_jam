@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://df0ajvwd8amho"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/Characters/Player.cs" id="1_0cmmb"]
-[ext_resource type="Texture2D" uid="uid://de4ekh8ebwprn" path="res://The Art Folder/Actual Sprites.png" id="2_0rhjt"]
+[ext_resource type="Texture2D" uid="uid://cpkfrcykvm5gq" path="res://The Art Folder/Actual Sprites.png" id="2_0rhjt"]
 [ext_resource type="Script" path="res://CoreGame/Systems/Characters/MovementSubsystem.cs" id="3_6h2af"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcqui"]
