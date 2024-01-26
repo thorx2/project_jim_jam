@@ -57,18 +57,41 @@ public partial class QteManager : Control
                 case ECharacterType.EGrey:
                     GameRuntimeParameters.GossipSpread += (0.02f + GameRuntimeParameters.GossipSpread * GameRuntimeParameters.GossipSpread);
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
+                    if (activeNPC.GetECharacterType == ECharacterType.EColored &&
+                        activeNPC.GetSpcialNPCStyle == GameManager.GetInstance.GetSpecialNPCOfDay)
+                    {
+                        qteWindow.HideMiniGameWindows();
+                        qteCoolDownTimer.Stop();
+                        GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerInMiniGame;
+                        canQte = false;
+                        qteWindow.Show(ECharacterType.EColored, activeNPC.GetQteDuration.Y);
+                    }
+                    else
+                    {
+                        QteFlowComplete();
+                        activeNPC.TriggerGossipBurst();
+                    }
                     break;
                 case ECharacterType.EColored:
-                    GameRuntimeParameters.GossipSpread += (0.15f + GameRuntimeParameters.GossipSpread * GameRuntimeParameters.GossipSpread);
+                    GameRuntimeParameters.GossipSpread += (0.08f + GameRuntimeParameters.GossipSpread * GameRuntimeParameters.GossipSpread);
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
+                    QteFlowComplete();
+                    activeNPC.TriggerGossipBurst();
                     break;
             }
-
-            activeNPC.TriggerGossipBurst();
         }
+        else if (state == EQteCompleteState.EQteSuccess)
+        {
+            QteFlowComplete();
+        }
+    }
+
+    private void QteFlowComplete()
+    {
         GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerWalking;
         qteCoolDownTimer.Stop();
         qteCoolDownTimer.Start();
+        qteWindow.HideMiniGameWindows();
     }
 
     private void OnQteRequested(ECharacterType type, NPC npc)
@@ -78,7 +101,7 @@ public partial class QteManager : Control
             activeNPC = npc;
             GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerInQTE;
             canQte = false;
-            qteWindow.Show(type, npc.GetQteDuration);
+            qteWindow.Show(ECharacterType.EGrey, npc.GetQteDuration.X);
         }
     }
 }

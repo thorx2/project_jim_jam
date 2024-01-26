@@ -45,4 +45,6 @@ public class MasterSignalBus
     public Action<ECharacterType, NPC> StartQteEvent;
 
     public Action<ECharacterType, EQteCompleteState> OnQteCompleteEvent;
+
+    public Action<bool> GameOver;
 }

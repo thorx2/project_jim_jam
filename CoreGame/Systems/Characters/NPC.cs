@@ -1,14 +1,13 @@
 using System;
+using CoreGame.GameSystems;
 using CoreGame.GameSystems.EventManagement;
 using Godot;
 public partial class NPC : Character
 {
     [ExportGroup("Reference")]
     [Export]
-    private Sprite2D visualSprite;
-    [ExportGroup("Reference")]
-    [Export]
-    private int characterFrame;
+    private AnimatedSprite2D visualSprite;
+    
     [ExportGroup("Reference")]
     [Export]
     private Sprite2D speechBubble;
@@ -24,20 +23,40 @@ public partial class NPC : Character
     [ExportCategory("Gameplay Configuration")]
     [Export]
     private float gossipBurstRadius;
-    [Export]
-    private float qteDuration;
 
-    public float GetQteDuration
+    [ExportCategory("Gameplay Configuration")]
+    [Export]
+    private Vector2 qteDuration;
+
+
+    [ExportCategory("Special Characters Data")]
+    [Export]
+    private ESpecialNPC specialNpcStyle;
+
+    public ESpecialNPC GetSpcialNPCStyle
+    {
+        get => specialNpcStyle;
+    }
+    public Vector2 GetQteDuration
     {
         get => qteDuration;
     }
 
-
+    private Random rnd = new();
     public override void _Ready()
     {
         base._Ready();
         MasterSignalBus.GetInstance.LevelLoadedEvent += OnMapLoaded;
-        visualSprite.Frame = characterFrame;
+        if (characterType == ECharacterType.EColored)
+        {
+            visualSprite.Play("special");
+            visualSprite.Frame = (int)specialNpcStyle;
+        }
+        else
+        {
+            visualSprite.Play("grey");
+            visualSprite.Frame = rnd.Next(0, visualSprite.SpriteFrames.GetFrameCount("grey"));
+        }
 
         gossipBubble.AreaEntered += OnGossipHitCharacter;
     }
@@ -93,5 +112,13 @@ public partial class NPC : Character
             ray.Visible = false;
         }
         (gossipSpreadCircle.Shape as CircleShape2D).Radius = gossipBurstRadius;
+
+        if (characterType == ECharacterType.EColored)
+        {
+            if (specialNpcStyle == GameManager.GetInstance.GetSpecialNPCOfDay)
+            {
+                MasterSignalBus.GetInstance.GameOver?.Invoke(false);
+            }
+        }
     }
 }

@@ -8,6 +8,11 @@ public partial class Character : CharacterBody2D
     [Export]
     protected ECharacterType characterType;
 
+    public ECharacterType GetECharacterType
+    {
+        get => characterType;
+    }
+
     [Export]
     protected RayCast2D[] pathCheckCast;
 
