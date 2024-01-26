@@ -9,7 +9,8 @@ frame_0/texture = ExtResource("2_63v6a")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juq1y"]
 size = Vector2(15, 11)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qloas"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_n8xmg"]
+resource_local_to_scene = true
 
 [node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("visualSprite", "speechBubble", "gossipBubble", "gossipSpreadCircle", "pathCheckCast")]
 y_sort_enabled = true
@@ -20,7 +21,7 @@ visualSprite = NodePath("Visual")
 speechBubble = NodePath("SpeechBubble")
 gossipBubble = NodePath("Area2D")
 gossipSpreadCircle = NodePath("Area2D/CollisionShape2D")
-gossipBurstRadius = 20.0
+gossipBurstRadius = 40.0
 characterType = 2
 pathCheckCast = [NodePath("RayCast2D")]
 
@@ -43,7 +44,7 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_qloas")
+shape = SubResource("CircleShape2D_n8xmg")
 
 [node name="SpeechBubble" type="Sprite2D" parent="."]
 visible = false
