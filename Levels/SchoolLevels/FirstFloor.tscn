@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://biwu73wkddqg5"]
+[gd_scene load_steps=4 format=3 uid="uid://biwu73wkddqg5"]
 
 [ext_resource type="Script" path="res://Levels/LevelController.cs" id="1_xkwip"]
 [ext_resource type="TileSet" uid="uid://c4si3m1guwc0g" path="res://Levels/CorrectTileSet.tres" id="2_mnqec"]
+[ext_resource type="Texture2D" uid="uid://vnfwogrqj3m" path="res://Levels/SchoolLevels/LD Layput.png" id="3_81j7b"]
 
-[node name="FirstFloor" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint")]
+[node name="FirstFloor" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "levelMapReference")]
 script = ExtResource("1_xkwip")
 playerSpawnPoint = NodePath("PlayerSpawnPoint")
+levelMapReference = NodePath("TileMap")
+metadata/_edit_vertical_guides_ = [0.0]
+metadata/_edit_horizontal_guides_ = [200.0]
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(406, 701)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_mnqec")
@@ -22,3 +27,8 @@ layer_3/name = "Props"
 layer_3/tile_data = PackedInt32Array()
 layer_4/name = "Decoration"
 layer_4/tile_data = PackedInt32Array()
+
+[node name="LdLayput" type="Sprite2D" parent="."]
+position = Vector2(405, 371)
+scale = Vector2(0.144571, 0.136483)
+texture = ExtResource("3_81j7b")
