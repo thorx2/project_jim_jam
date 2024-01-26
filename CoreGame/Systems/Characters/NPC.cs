@@ -21,16 +21,9 @@ public partial class NPC : Character
         if (pathCheckCast.IsColliding())
         {
             var p = pathCheckCast.GetCollider() as Player;
-            if (p != null)
+            if (p != null && p.CurrentPlayerState == EPlayerState.EPlayerWalking)
             {
-                switch (characterType)
-                {
-                    case ECharacterType.EGrey:
-                    MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType);
-                        break;
-                    case ECharacterType.EColored:
-                        break;
-                }
+                MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType);
             }
         }
     }

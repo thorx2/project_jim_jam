@@ -4,7 +4,7 @@ using Godot;
 public partial class MovementSubsystem : Node
 {
     [Export]
-    private Node2D parentMovingNode;
+    private Player parentMovingNode;
 
     [Export]
     public float Speed = 300.0f;
@@ -21,7 +21,10 @@ public partial class MovementSubsystem : Node
 
     public override void _Process(double delta)
     {
-        PlayerMovement();
+        if (parentMovingNode.CurrentPlayerState == EPlayerState.EPlayerWalking)
+        {
+            PlayerMovement();
+        }
     }
 
     private void PlayerMovement()
