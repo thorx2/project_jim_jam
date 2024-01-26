@@ -1,4 +1,5 @@
 using System;
+using CoreGame.GameSystems;
 using CoreGame.GameSystems.EventManagement;
 using Godot;
 public partial class NPC : Character
@@ -24,10 +25,16 @@ public partial class NPC : Character
     [ExportCategory("Gameplay Configuration")]
     [Export]
     private float gossipBurstRadius;
-    [Export]
-    private float qteDuration;
 
-    public float GetQteDuration
+    [ExportCategory("Gameplay Configuration")]
+    [Export]
+    private Vector2 qteDuration;
+
+
+    [ExportCategory("Special Characters Data")]
+    [Export]
+    private ESpecialNPC specialNpcStyle;
+    public Vector2 GetQteDuration
     {
         get => qteDuration;
     }
@@ -93,5 +100,13 @@ public partial class NPC : Character
             ray.Visible = false;
         }
         (gossipSpreadCircle.Shape as CircleShape2D).Radius = gossipBurstRadius;
+
+        if (characterType == ECharacterType.EColored)
+        {
+            if (specialNpcStyle == GameManager.GetInstance.GetNPCOfDay)
+            {
+                MasterSignalBus.GetInstance.GameOver?.Invoke(false);
+            }
+        }
     }
 }

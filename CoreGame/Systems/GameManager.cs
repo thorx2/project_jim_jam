@@ -48,6 +48,10 @@ public partial class GameManager : Node2D
 	{
 		instance = this;
 		MasterSignalBus.GetInstance.StartGameEvent += OnStartNewGame;
+
+		MasterSignalBus.GetInstance.GameOver += OnDayCompleted;
+
+		currentDay = 0;
 	}
 	#endregion
 
@@ -63,6 +67,33 @@ public partial class GameManager : Node2D
 			CreatePlayerCharacter();
 		}
 		GameRuntimeParameters.ResetGameParameters();
+		StartNextDay();
 	}
+	#endregion
+
+	#region Day Management
+
+	private int currentDay;
+
+	private Random rnd = new();
+
+	private ESpecialNPC npcOfTheDay;
+
+	public ESpecialNPC GetNPCOfDay
+	{
+		get => npcOfTheDay;
+	}
+
+	public void OnDayCompleted(bool isWin)
+	{
+
+	}
+
+	public void StartNextDay()
+	{
+		++currentDay;
+		npcOfTheDay = (ESpecialNPC)rnd.Next(0, 4);
+	}
+
 	#endregion
 }

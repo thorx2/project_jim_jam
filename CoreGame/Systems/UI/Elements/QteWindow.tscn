@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlhhwoh8rq7fs"]
+[gd_scene load_steps=16 format=3 uid="uid://dlhhwoh8rq7fs"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/QTESystems/QteWindow.cs" id="1_m5e33"]
 [ext_resource type="Texture2D" uid="uid://cypf226cgubq0" path="res://The Art Folder/WASD Keys/W.png" id="2_3dfmw"]
+[ext_resource type="Script" path="res://CoreGame/Systems/QTESystems/GreyManGame/GreyManGame.cs" id="2_o1x3y"]
 [ext_resource type="Texture2D" uid="uid://caveall1wi5di" path="res://The Art Folder/WASD Keys/A.png" id="3_7d5sr"]
 [ext_resource type="Texture2D" uid="uid://b35o5dh500gh1" path="res://The Art Folder/WASD Keys/S.png" id="4_fsxn2"]
 [ext_resource type="Texture2D" uid="uid://d4ce7otuaqjwj" path="res://The Art Folder/WASD Keys/D.png" id="5_lswx1"]
+[ext_resource type="Script" path="res://CoreGame/Systems/ConductorGameplay/ConductorController.cs" id="6_j3jov"]
+[ext_resource type="PackedScene" uid="uid://c7eb423n6nwkv" path="res://CoreGame/Systems/ConductorGameplay/RhythmTile.tscn" id="7_hbo44"]
 
 [sub_resource type="Gradient" id="Gradient_iifkw"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -32,7 +35,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="QTEWindow" type="Control" node_paths=PackedStringArray("timerBar", "mashBar", "qteTimer", "quickActionImage")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mtp4"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4y0bk"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8str6"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4l1u"]
+size = Vector2(14, 14)
+
+[node name="QTEWindow" type="Control" node_paths=PackedStringArray("greyGame", "conductorGame", "bg")]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -42,12 +57,9 @@ offset_top = -240.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_m5e33")
-timerBar = NodePath("TimerBar")
-mashBar = NodePath("MashBar")
-qteTimer = NodePath("CurrentQTETimer")
-quickActionImage = NodePath("QTEImageContainer/AnimatedSprite2D")
-baseDecayRate = 0.05
-baseGainRate = 0.3
+greyGame = NodePath("GreyManGame")
+conductorGame = NodePath("SpecialGame")
+bg = NodePath("BG")
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -58,10 +70,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_drx6o")
 
-[node name="CurrentQTETimer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="GreyManGame" type="Control" parent="." node_paths=PackedStringArray("timerBar", "mashBar", "qteTimer", "quickActionImage")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_o1x3y")
+timerBar = NodePath("TimerBar")
+mashBar = NodePath("MashBar")
+qteTimer = NodePath("CurrentQTETimer")
+quickActionImage = NodePath("QTEImageContainer/AnimatedSprite2D")
+baseDecayRate = 0.05
+baseGainRate = 0.3
 
-[node name="QTEImageContainer" type="Control" parent="."]
+[node name="QTEImageContainer" type="Control" parent="GreyManGame"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -75,14 +100,14 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="QTEImageContainer"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GreyManGame/QTEImageContainer"]
 position = Vector2(31, 34)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_8b5ar")
 autoplay = "default"
 speed_scale = 0.0
 
-[node name="TimerBar" type="ProgressBar" parent="."]
+[node name="TimerBar" type="ProgressBar" parent="GreyManGame"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -96,7 +121,7 @@ grow_vertical = 2
 fill_mode = 3
 show_percentage = false
 
-[node name="MashBar" type="ProgressBar" parent="."]
+[node name="MashBar" type="ProgressBar" parent="GreyManGame"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -107,3 +132,116 @@ grow_vertical = 2
 max_value = 1.0
 fill_mode = 3
 show_percentage = false
+
+[node name="CurrentQTETimer" type="Timer" parent="GreyManGame"]
+wait_time = 5.0
+
+[node name="SpecialGame" type="Control" parent="." node_paths=PackedStringArray("dropSpawnLocation", "tileSpawnTimer")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_j3jov")
+dropSpawnLocation = [NodePath("HBoxContainer/WMaker"), NodePath("HBoxContainer/AMaker"), NodePath("HBoxContainer/SMaker"), NodePath("HBoxContainer/DMaker")]
+tileTemplate = ExtResource("7_hbo44")
+tileSpawnTimer = NodePath("TileSpawnIntreval")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SpecialGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = 155.0
+offset_right = -310.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="W" type="Control" parent="SpecialGame/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/W"]
+scale = Vector2(3, 3)
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpecialGame/HBoxContainer/W/Area2D"]
+shape = SubResource("RectangleShape2D_4mtp4")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpecialGame/HBoxContainer/W/Area2D"]
+texture = ExtResource("2_3dfmw")
+
+[node name="A" type="Control" parent="SpecialGame/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/A"]
+scale = Vector2(3, 3)
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpecialGame/HBoxContainer/A/Area2D"]
+shape = SubResource("RectangleShape2D_4y0bk")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpecialGame/HBoxContainer/A/Area2D"]
+texture = ExtResource("3_7d5sr")
+
+[node name="S" type="Control" parent="SpecialGame/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/S"]
+scale = Vector2(3, 3)
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpecialGame/HBoxContainer/S/Area2D"]
+shape = SubResource("RectangleShape2D_8str6")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpecialGame/HBoxContainer/S/Area2D"]
+texture = ExtResource("4_fsxn2")
+
+[node name="D" type="Control" parent="SpecialGame/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/D"]
+scale = Vector2(3, 3)
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpecialGame/HBoxContainer/D/Area2D"]
+shape = SubResource("RectangleShape2D_l4l1u")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpecialGame/HBoxContainer/D/Area2D"]
+texture = ExtResource("5_lswx1")
+
+[node name="WMaker" type="Marker2D" parent="SpecialGame/HBoxContainer"]
+position = Vector2(30, -211)
+
+[node name="AMaker" type="Marker2D" parent="SpecialGame/HBoxContainer"]
+position = Vector2(113, -211)
+
+[node name="SMaker" type="Marker2D" parent="SpecialGame/HBoxContainer"]
+position = Vector2(196, -211)
+
+[node name="DMaker" type="Marker2D" parent="SpecialGame/HBoxContainer"]
+position = Vector2(279, -211)
+
+[node name="TileSpawnIntreval" type="Timer" parent="SpecialGame"]
+wait_time = 0.75

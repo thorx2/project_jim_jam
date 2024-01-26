@@ -5,120 +5,47 @@ using Godot;
 
 public partial class QteWindow : Control
 {
-    [ExportGroup("Element reference")]
+    [ExportGroup("Game Windows")]
     [Export]
-    private ProgressBar timerBar;
-    [ExportGroup("Element reference")]
+    private GreyManGame greyGame;
+    [ExportGroup("Game Windows")]
     [Export]
-    private ProgressBar mashBar;
-    [ExportGroup("Element reference")]
-    [Export]
-    private Timer qteTimer;
-    [ExportGroup("Element reference")]
-    [Export]
-    private AnimatedSprite2D quickActionImage;
+    private ConductorController conductorGame;
 
-    [ExportGroup("Gameplay Configurations")]
     [Export]
-    private float baseDecayRate;
-    [ExportGroup("Gameplay Configurations")]
-    [Export]
-    private float baseGainRate;
-
-    private Random rnd = new Random();
-    private float mashProgress = 0.0f;
-    private int randomGameKey = -1;
-    private ECharacterType lastCharacterType;
+    private Control bg;
 
     public override void _Ready()
     {
-        qteTimer.Timeout += OnQteTimeout;
-        qteTimer.OneShot = true;
-        timerBar.MaxValue = 1;
-        timerBar.Value = 0;
+        greyGame.Visible = false;
+        conductorGame.Visible = false;
+        bg.Visible = false;
     }
 
-    public override void _Process(double delta)
+    public void HideMiniGameWindows()
     {
-        if (Visible)
-        {
-            if (mashProgress >= 0.98)
-            {
-                OnQTEComplete();
-                MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteSuccess);
-                qteTimer.Stop();
-                Visible = false;
-            }
-            timerBar.Value = qteTimer.TimeLeft / qteTimer.WaitTime;
-            mashBar.Value = mashProgress;
-            mashProgress -= (baseDecayRate + GameRuntimeParameters.GossipSpread) * (float)delta;
-            mashProgress = Math.Clamp(mashProgress, 0, 1);
-        }
-    }
-
-    private void OnQTEComplete()
-    {
-        mashProgress = 0f;
-        timerBar.Value = 0f;
-        mashBar.Value = 0f;
-    }
-
-
-
-    private void OnQteTimeout()
-    {
-        MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteFailed);
-        OnQTEComplete();
-        Visible = false;
-        qteTimer.Stop();
+        greyGame.Visible = false;
+        conductorGame.Visible = false;
+        bg.Visible = false;
     }
 
     public void Show(ECharacterType type, float duration)
     {
         Visible = true;
-        qteTimer.Stop();
-        qteTimer.WaitTime = duration;
-        qteTimer.Start();
-        lastCharacterType = type;
-        randomGameKey = rnd.Next(0, 3);
-        quickActionImage.Frame = randomGameKey;
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (Visible)
+        switch (type)
         {
-            if (@event is InputEventKey && @event.IsPressed())
-            {
-                var g = @event as InputEventKey;
-                switch (g.Keycode)
-                {
-                    case Key.W:
-                        if (randomGameKey == 0)
-                        {
-                            mashProgress += baseGainRate;
-                        }
-                        break;
-                    case Key.A:
-                        if (randomGameKey == 1)
-                        {
-                            mashProgress += baseGainRate;
-                        }
-                        break;
-                    case Key.S:
-                        if (randomGameKey == 2)
-                        {
-                            mashProgress += baseGainRate;
-                        }
-                        break;
-                    case Key.D:
-                        if (randomGameKey == 3)
-                        {
-                            mashProgress += baseGainRate;
-                        }
-                        break;
-                }
-            }
+            case ECharacterType.EGrey:
+                bg.Visible = true;
+                greyGame.Show(type, duration);
+                greyGame.SetProcessInput(true);
+                greyGame.SetProcess(true);
+                break;
+            case ECharacterType.EColored:
+                bg.Visible = true;
+                conductorGame.Show(type, duration);
+                conductorGame.SetProcessInput(true);
+                conductorGame.SetProcess(true);
+                break;
         }
     }
 }

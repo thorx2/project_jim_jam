@@ -8,19 +8,19 @@ public partial class UIManager : Control
     private Control mainMenu;
 
     [Export]
-    private Control inGameMenu;
+    private Control gameplayUIRef;
 
     public override void _Ready()
     {
         MasterSignalBus.GetInstance.StartGameEvent += OnGameStart;
         mainMenu.Visible = true;
-        inGameMenu.Visible = false;
+        gameplayUIRef.Visible = false;
     }
 
     private void OnGameStart()
     {
         mainMenu.Visible = false;
-        inGameMenu.Visible = true;
+        gameplayUIRef.Visible = true;
     }
 
 }
