@@ -110,7 +110,7 @@ grow_vertical = 2
 script = ExtResource("9_8plh6")
 currentProgressBar = NodePath("CurrentSpreadBar")
 failurePlaceHolderBar = NodePath("FailureDisplay")
-qteCoolDownTimer = NodePath("Timer")
+qteCoolDownTimer = NodePath("QteWorldCDTimer")
 qteWindow = NodePath("QTEWindow")
 
 [node name="FailureDisplay" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
@@ -171,7 +171,7 @@ offset_top = -240.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("11_h3cyf")
-qteTimer = NodePath("Timer")
+qteTimer = NodePath("CurrentQTETimer")
 quickActionImage = NodePath("QTEImageContainer/AnimatedSprite2D")
 
 [node name="BG" type="TextureRect" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
@@ -183,7 +183,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_drx6o")
 
-[node name="Timer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
+[node name="CurrentQTETimer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
 wait_time = 3.0
 
 [node name="QTEImageContainer" type="Control" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
@@ -207,5 +207,5 @@ sprite_frames = SubResource("SpriteFrames_8b5ar")
 autoplay = "default"
 speed_scale = 0.0
 
-[node name="Timer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI"]
+[node name="QteWorldCDTimer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI"]
 wait_time = 10.0
