@@ -70,8 +70,6 @@ public partial class ConductorController : Control
                 string animation = (i == key) ? "Invisible" : GetAnimationForActiveNPC();
                 SpawnTileAtKey(i, animation, i == key);
             }
-
-            GD.Print($"Tile Key: {key}");
         }
     }
 
@@ -111,7 +109,6 @@ public partial class ConductorController : Control
     {
         if (!arg1 && tile.canReduceLives)
         {
-            GD.Print($"Current Lives: {currentLives}");
             currentLives -= 1;
         }
 
