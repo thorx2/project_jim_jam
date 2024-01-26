@@ -55,7 +55,7 @@ public partial class QteManager : Control
             switch (type)
             {
                 case ECharacterType.EGrey:
-                    GameRuntimeParameters.GossipSpread += (0.02f + GameRuntimeParameters.GossipSpread * GameRuntimeParameters.GossipSpread);
+                    GameRuntimeParameters.GossipSpread += GameRuntimeParameters.GreyFailSpread +GameRuntimeParameters.GossipSpread;
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
                     if (activeNPC.GetECharacterType == ECharacterType.EColored &&
                         activeNPC.GetSpecialNPCStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
@@ -73,7 +73,7 @@ public partial class QteManager : Control
                     }
                     break;
                 case ECharacterType.EColored:
-                    GameRuntimeParameters.GossipSpread += (0.08f + GameRuntimeParameters.GossipSpread * GameRuntimeParameters.GossipSpread);
+                    GameRuntimeParameters.GossipSpread += GameRuntimeParameters.ColorFailSpread + GameRuntimeParameters.GossipSpread;
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
                     QteFlowComplete();
                     activeNPC.TriggerGossipBurst();
