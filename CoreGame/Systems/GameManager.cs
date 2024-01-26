@@ -1,3 +1,4 @@
+using CoreGame.GameSystems.EventManagement;
 using Godot;
 using System;
 
@@ -5,32 +6,55 @@ namespace CoreGame.GameSystems;
 
 public partial class GameManager : Node2D
 {
+    #region Singleton Access
+    private static GameManager instance;
 
-    #region Viewport Scaling
-    /// <summary>
-    /// Spawn game play elements within this VP as the parent.
-    /// </summary>
-    [Export]
-    private Viewport gameViewport;
-
-    [Export]
-    private SubViewportContainer gameVPContainer;
-
-    private Vector2 scaling;
-
-    private Vector2 rootVPSize;
+    public static GameManager GetInstance
+    {
+        get => instance;
+    }
     #endregion
 
+    #region Player Spawner
+
+    [Export]
+    private PackedScene playerScene;
+
+    [Export]
+    private Node2D gameplayParent;
+
+    private Character playerRef = null;
+
+    public Character GetPlayerRef
+    {
+        get => playerRef;
+    }
+
+    public Character CreatePlayerCharacter()
+    {
+
+        if (playerRef == null)
+        {
+            playerRef = playerScene.Instantiate() as Character;
+            gameplayParent.AddChild(playerRef);
+        }
+
+        return playerRef;
+    }
+    #endregion
+
+    #region Godot region
     public override void _Ready()
     {
-        ScaleGameplayViewportToParent();
+        instance = this;
+        MasterSignalBus.GetInstance.StartGame += OnStartNewGame;
     }
+    #endregion
 
-    private void ScaleGameplayViewportToParent()
+    #region Functional
+    public void OnStartNewGame()
     {
-        rootVPSize = GetViewportRect().Size;
-        scaling = rootVPSize / gameViewport.GetVisibleRect().Size;
-        gameVPContainer.Scale = scaling;
+        CreatePlayerCharacter();
     }
-
+    #endregion
 }

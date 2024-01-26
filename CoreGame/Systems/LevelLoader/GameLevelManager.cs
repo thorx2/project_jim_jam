@@ -10,7 +10,6 @@ public partial class GameLevelManager : SubViewport
     [Export]
     public Array<LevelData> gameMaps;
 
-    [Export]
     private Character playerCharacter;
 
     [Export]
@@ -20,28 +19,19 @@ public partial class GameLevelManager : SubViewport
     {
         MasterSignalBus.GetInstance.LevelLoadedEvent += OnNewLevelLoaded;
         MasterSignalBus.GetInstance.LoadMapEvent += LoadNewMap;
-
-        if (gameMaps.Count > 0)
-        {
-            var map = gameMaps[0].LoadMap.Instantiate();
-            gameplayMasterParent.AddChild(map);
-        }
-        else
-        {
-            GD.PrintErr("Missing levels for the game!!");
-        }
     }
 
     private void OnNewLevelLoaded(Vector2 newPos, TileMap map)
     {
+        playerCharacter ??= GameManager.GetInstance.GetPlayerRef;
         PathGenerator.GetPathGeneratorInstance.SetupGameMap(map);
-        var pointPos = PathGenerator.GetPathGeneratorInstance.GetMapPointForPosition(newPos);
-        playerCharacter.GlobalPosition = PathGenerator.GetPathGeneratorInstance.GetPointPositionCentered(pointPos);
+        playerCharacter.SnapCharacterToTileOnMap(newPos);
     }
 
 
-    public void LoadNewMap(PackedScene map)
+    public void LoadNewMap(int map)
     {
-
+        var loadedMap = gameMaps[map].LoadMap.Instantiate();
+        gameplayMasterParent.AddChild(loadedMap);
     }
 }

@@ -1,15 +1,24 @@
+using CoreGame.GameSystems.EventManagement;
 using Godot;
 using System;
 
 public partial class UIManager : Control
 {
-    // Called when the node enters the scene tree for the first time.
+    [Export]
+    private Control mainMenu;
+
+    [Export]
+    private Control inGameMenu;
+
     public override void _Ready()
     {
+        MasterSignalBus.GetInstance.StartGame += OnGameStart;
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+    private void OnGameStart()
     {
+        mainMenu.Visible = false;
+        inGameMenu.Visible = true;
     }
+
 }

@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bsmqyasjp5vf"]
+
+[ext_resource type="Shader" path="res://CoreGame/Systems/Characters/TechnicalArt/DeSatShader.gdshader" id="1_xy3yl"]
+
+[resource]
+shader = ExtResource("1_xy3yl")
+shader_parameter/saturation = null

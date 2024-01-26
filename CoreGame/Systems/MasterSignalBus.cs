@@ -26,7 +26,15 @@ public class MasterSignalBus
 
     private MasterSignalBus() { }
 
+    /// <summary>
+    /// Event fired from the Level onces it is loaded to place the player character in the map.
+    /// </summary>
     public Action<Vector2, TileMap> LevelLoadedEvent;
 
-    public Action<PackedScene> LoadMapEvent;
+    /// <summary>
+    /// Event fired to load a particular level index.
+    /// </summary>
+    public Action<int> LoadMapEvent;
+
+    public Action StartGame;
 }
