@@ -70,7 +70,6 @@ inGameMenu = NodePath("GamePlayUI")
 layout_mode = 1
 
 [node name="GamePlayUI" type="Control" parent="MasterUI/RootContainer" node_paths=PackedStringArray("currentProgressBar", "failurePlaceHolderBar", "qteCoolDownTimer", "qteWindow")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

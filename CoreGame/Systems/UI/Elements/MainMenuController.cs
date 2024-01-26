@@ -4,16 +4,16 @@ using System;
 
 public partial class MainMenuController : Control
 {
-    [Export]
-    private Button startGameButton;
+	[Export]
+	private Button startGameButton;
 
-    public override void _Ready()
-    {
-        startGameButton.Pressed += OnStartGame;
-    }
+	public override void _Ready()
+	{
+		startGameButton.Pressed += OnStartGame;
+	}
 
-    private void OnStartGame()
-    {
-        MasterSignalBus.GetInstance.StartGameEvent?.Invoke();
-    }
+	private void OnStartGame()
+	{
+		MasterSignalBus.GetInstance.StartGameEvent?.Invoke();
+	}
 }
