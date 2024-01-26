@@ -135,4 +135,5 @@ visible = false
 layout_mode = 1
 
 [node name="QteWorldCDTimer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI"]
-wait_time = 10.0
+wait_time = 5.0
+autostart = true

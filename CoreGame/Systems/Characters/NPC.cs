@@ -2,11 +2,19 @@ using CoreGame.GameSystems.EventManagement;
 using Godot;
 public partial class NPC : Character
 {
+    [ExportGroup("Reference")]
     [Export]
     private Sprite2D visualSprite;
-
+    [ExportGroup("Reference")]
     [Export]
     private int characterFrame;
+    [ExportGroup("Reference")]
+    [Export]
+    private Sprite2D speechBubble;
+
+    [ExportCategory("Gameplay Configuration")]
+    [Export]
+    private float qteDuration;
 
 
     public override void _Ready()
@@ -18,14 +26,17 @@ public partial class NPC : Character
 
     public override void _Process(double delta)
     {
-        foreach (var ray in pathCheckCast)
+        // if (!speechBubble.Visible)
         {
-            if (ray.IsColliding())
+            foreach (var ray in pathCheckCast)
             {
-                var p = ray.GetCollider() as Player;
-                if (p != null && p.CurrentPlayerState == EPlayerState.EPlayerWalking)
+                if (ray.IsColliding())
                 {
-                    MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType);
+                    var p = ray.GetCollider() as Player;
+                    if (p != null && p.CurrentPlayerState == EPlayerState.EPlayerWalking)
+                    {
+                        MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType, qteDuration);
+                    }
                 }
             }
         }

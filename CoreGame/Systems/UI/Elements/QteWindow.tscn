@@ -32,7 +32,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="QTEWindow" type="Control" node_paths=PackedStringArray("qteTimer", "quickActionImage")]
+[node name="QTEWindow" type="Control" node_paths=PackedStringArray("timerBar", "mashBar", "qteTimer", "quickActionImage")]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -42,8 +42,12 @@ offset_top = -240.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_m5e33")
+timerBar = NodePath("TimerBar")
+mashBar = NodePath("MashBar")
 qteTimer = NodePath("CurrentQTETimer")
 quickActionImage = NodePath("QTEImageContainer/AnimatedSprite2D")
+baseDecayRate = 0.05
+baseGainRate = 0.3
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -55,7 +59,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_drx6o")
 
 [node name="CurrentQTETimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 
 [node name="QTEImageContainer" type="Control" parent="."]
 layout_mode = 1
@@ -86,6 +90,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -70.0
 offset_right = -25.0
+offset_bottom = -60.0
 grow_horizontal = 0
 grow_vertical = 2
 fill_mode = 3
@@ -95,8 +100,10 @@ show_percentage = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_right = 65.0
+offset_left = 40.0
+offset_right = 85.0
+offset_bottom = -60.0
 grow_vertical = 2
+max_value = 1.0
 fill_mode = 3
 show_percentage = false

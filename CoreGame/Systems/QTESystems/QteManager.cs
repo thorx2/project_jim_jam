@@ -17,12 +17,10 @@ public partial class QteManager : Control
     [Export]
     private QteWindow qteWindow;
 
-    private bool canQte = true;
+    private bool canQte = false;
 
     public override void _Ready()
     {
-        qteCoolDownTimer.Stop();
-
         MasterSignalBus.GetInstance.StartQteEvent += OnQteRequested;
 
         MasterSignalBus.GetInstance.OnQteCompleteEvent += OnQteCompleted;
@@ -30,6 +28,8 @@ public partial class QteManager : Control
         MasterSignalBus.GetInstance.StartGameEvent += OnNewGameStart;
 
         qteCoolDownTimer.Timeout += OnQteTimerTimeout;
+
+        qteCoolDownTimer.Start(1);
     }
 
     private void OnQteTimerTimeout()
@@ -63,13 +63,13 @@ public partial class QteManager : Control
         qteCoolDownTimer.Start();
     }
 
-    private void OnQteRequested(ECharacterType type)
+    private void OnQteRequested(ECharacterType type, float qteTime)
     {
         if (canQte)
         {
             GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerInQTE;
             canQte = false;
-            qteWindow.Show(type, 2.0f);
+            qteWindow.Show(type, qteTime);
         }
     }
 }

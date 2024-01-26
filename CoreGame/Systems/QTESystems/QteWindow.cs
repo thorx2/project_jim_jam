@@ -5,22 +5,62 @@ using Godot;
 
 public partial class QteWindow : Control
 {
+    [ExportGroup("Element reference")]
+    [Export]
+    private ProgressBar timerBar;
+    [ExportGroup("Element reference")]
+    [Export]
+    private ProgressBar mashBar;
+    [ExportGroup("Element reference")]
     [Export]
     private Timer qteTimer;
-
+    [ExportGroup("Element reference")]
     [Export]
     private AnimatedSprite2D quickActionImage;
 
-    private ECharacterType lastCharacterType;
-
-    private int randomGameKey = -1;
+    [ExportGroup("Gameplay Configurations")]
+    [Export]
+    private float baseDecayRate;
+    [ExportGroup("Gameplay Configurations")]
+    [Export]
+    private float baseGainRate;
 
     private Random rnd = new Random();
+    private float mashProgress = 0.0f;
+    private int randomGameKey = -1;
+    private ECharacterType lastCharacterType;
 
     public override void _Ready()
     {
         qteTimer.Timeout += OnQteTimeout;
         qteTimer.OneShot = true;
+        timerBar.MaxValue = 1;
+        timerBar.Value = 0;
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Visible)
+        {
+            if (mashProgress >= 0.98)
+            {
+                OnQTEComplete();
+                MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteSuccess);
+                qteTimer.Stop();
+                Visible = false;
+            }
+            timerBar.Value = qteTimer.TimeLeft / qteTimer.WaitTime;
+            mashBar.Value = mashProgress;
+            mashProgress -= (baseDecayRate + GameRuntimeParameters.GossipSpread) * (float)delta;
+            mashProgress = Math.Clamp(mashProgress, 0, 1);
+        }
+    }
+
+    private void OnQTEComplete()
+    {
+        mashProgress = 0f;
+        timerBar.Value = 0f;
+        mashBar.Value = 0f;
     }
 
 
@@ -28,6 +68,7 @@ public partial class QteWindow : Control
     private void OnQteTimeout()
     {
         MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteFailed);
+        OnQTEComplete();
         Visible = false;
         qteTimer.Stop();
     }
@@ -55,34 +96,26 @@ public partial class QteWindow : Control
                     case Key.W:
                         if (randomGameKey == 0)
                         {
-                            MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteSuccess);
-                            Visible = false;
+                            mashProgress += baseGainRate;
                         }
-                        qteTimer.Stop();
                         break;
                     case Key.A:
                         if (randomGameKey == 1)
                         {
-                            MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteSuccess);
-                            Visible = false;
+                            mashProgress += baseGainRate;
                         }
-                        qteTimer.Stop();
                         break;
                     case Key.S:
                         if (randomGameKey == 2)
                         {
-                            MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteSuccess);
-                            Visible = false;
+                            mashProgress += baseGainRate;
                         }
-                        qteTimer.Stop();
                         break;
                     case Key.D:
                         if (randomGameKey == 3)
                         {
-                            MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteSuccess);
-                            Visible = false;
+                            mashProgress += baseGainRate;
                         }
-                        qteTimer.Stop();
                         break;
                 }
             }

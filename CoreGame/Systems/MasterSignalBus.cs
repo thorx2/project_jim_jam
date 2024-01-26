@@ -42,7 +42,7 @@ public class MasterSignalBus
     public Action StartGameEvent;
 
 
-    public Action<ECharacterType> StartQteEvent;
+    public Action<ECharacterType, float> StartQteEvent;
 
     public Action<ECharacterType, EQteCompleteState> OnQteCompleteEvent;
 }

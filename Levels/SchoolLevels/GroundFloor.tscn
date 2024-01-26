@@ -39,8 +39,10 @@ position = Vector2(103, 151)
 
 [node name="NPCBoy" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(70, 73)
+qteDuration = 2.0
 
 [node name="NPC" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(159, 122)
 characterFrame = 7
+qteDuration = 10.0
 characterType = 1

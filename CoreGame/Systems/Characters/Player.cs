@@ -5,7 +5,8 @@ public partial class Player : Character
 {
     [Export]
     private AnimatedSprite2D characterVisual;
-
+    [ExportSubgroup("Debug Display Data")]
+    [Export]
     public EPlayerState CurrentPlayerState;
     
     public override void _Ready()
