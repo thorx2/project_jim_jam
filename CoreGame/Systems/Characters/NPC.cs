@@ -7,7 +7,7 @@ public partial class NPC : Character
     [ExportGroup("Reference")]
     [Export]
     private AnimatedSprite2D visualSprite;
-    
+
     [ExportGroup("Reference")]
     [Export]
     private Sprite2D speechBubble;
@@ -117,7 +117,7 @@ public partial class NPC : Character
         {
             if (specialNpcStyle == GameManager.GetInstance.GetSpecialNPCOfDay)
             {
-                MasterSignalBus.GetInstance.GameOver?.Invoke(false);
+                MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
             }
         }
     }

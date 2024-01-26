@@ -19,7 +19,7 @@ public class MasterSignalBus
             {
                 instance = new();
             }
-            
+
             return instance;
         }
     }
@@ -46,5 +46,18 @@ public class MasterSignalBus
 
     public Action<ECharacterType, EQteCompleteState> OnQteCompleteEvent;
 
-    public Action<bool> GameOver;
+    public Action<bool> OnDayOver;
+
+    public Action GameHardReset;
+
+    public static void HardResetSystem()
+    {
+        instance.LevelLoadedEvent = null;
+        instance.LoadMapEvent = null;
+        instance.StartGameEvent = null;
+        instance.StartQteEvent = null;
+        instance.OnQteCompleteEvent = null;
+        instance.OnDayOver = null;
+        instance.GameHardReset?.Invoke();
+    }
 }

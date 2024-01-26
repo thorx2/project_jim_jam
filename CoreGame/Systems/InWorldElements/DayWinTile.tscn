@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpj7x5jhv7i6i"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/InWorldElements/DayWinTile.cs" id="1_mdb8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg3yu"]
+
+[node name="DayWinTile" type="Area2D"]
+collision_layer = 8
+input_pickable = false
+monitorable = false
+script = ExtResource("1_mdb8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mg3yu")

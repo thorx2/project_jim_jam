@@ -104,7 +104,7 @@ public partial class PathGenerator : Node
 
     public Vector2I GetMapPointForPosition(Vector2 pos)
     {
-        return gameMap.LocalToMap(pos);
+        return gameMap != null ? gameMap.LocalToMap(pos) : Vector2I.Zero;
     }
 
     public TileData GetTileData(int layer, Vector2I pos, bool useProxy = false)
