@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2p8t7hb8yu3r"
-path="res://.godot/imported/WASD.png-94164a93220566f39924f2644552dea3.ctex"
+uid="uid://cypf226cgubq0"
+path="res://.godot/imported/W.png-6214f47a35dfb4e5168e8fa35b70d81f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://The Art Folder/WASD.png"
-dest_files=["res://.godot/imported/WASD.png-94164a93220566f39924f2644552dea3.ctex"]
+source_file="res://The Art Folder/WASD Keys/W.png"
+dest_files=["res://.godot/imported/W.png-6214f47a35dfb4e5168e8fa35b70d81f.ctex"]
 
 [params]
 
