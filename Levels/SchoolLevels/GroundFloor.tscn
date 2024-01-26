@@ -39,17 +39,15 @@ position = Vector2(103, 151)
 
 [node name="NPC" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(140, 124)
-characterFrame = 6
 qteDuration = Vector2(10, 0)
 characterType = 1
 
 [node name="NPC_2" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(68, 79)
-characterFrame = 2
 qteDuration = Vector2(1, 20)
+specialNpcStyle = 3
 
 [node name="NPC_3" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(169, 125)
-characterFrame = 7
 qteDuration = Vector2(10, 0)
 characterType = 1

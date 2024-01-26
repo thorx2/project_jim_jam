@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkborx7sl7ctn"
-path="res://.godot/imported/Interior general.png-99894e2115fc54229b5003ce205727a9.ctex"
+uid="uid://warsmgqktdf5"
+path="res://.godot/imported/Props.png-6eaf9b2e45f7d7d25fd7ad30b376458c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://The Art Folder/Refs/Interior general.png"
-dest_files=["res://.godot/imported/Interior general.png-99894e2115fc54229b5003ce205727a9.ctex"]
+source_file="res://Actual Art/Props.png"
+dest_files=["res://.godot/imported/Props.png-6eaf9b2e45f7d7d25fd7ad30b376458c.ctex"]
 
 [params]
 
