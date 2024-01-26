@@ -59,35 +59,37 @@ public partial class ConductorController : Control
         if (activeNPC.GetSpecialNPCStyle != ESpecialNPC.EBully)
         {
             // Just spawn one tile for non bullies
-            SpawnTileAtKey(key, GetAnimationForActiveNPC());
+            SpawnTileAtKey(key, GetAnimationForActiveNPC(), true);
             return;
         }
         else
         {
-            // Spawn at every tile except the key
-            for (int i = 0; i < 3; i++)
+            // Spawn at every tile but the key tile is invisible
+            for (int i = 0; i < 4; i++)
             {
-                if (i != key)
-                    SpawnTileAtKey(i, GetAnimationForActiveNPC());
+                string animation = (i == key) ? "Invisible" : GetAnimationForActiveNPC();
+                SpawnTileAtKey(i, animation, i == key);
             }
+
+            GD.Print($"Tile Key: {key}");
         }
     }
 
-    private void SpawnTileAtKey(int key, string animation)
+    private void SpawnTileAtKey(int key, string animation, bool canReduceLives)
     {
         if (tilePool.Count > 0)
         {
             var tile = tilePool[0];
             tilePool.RemoveAt(0);
             activeTiles.Add(tile);
-            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key, animation);
+            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key, animation, canReduceLives);
         }
         else
         {
             var tile = tileTemplate.Instantiate() as RhythmTile;
             tile.TileInteractionHappened += ProcessTileInteraction;
             AddChild(tile);
-            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key, animation);
+            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key, animation, canReduceLives);
             activeTiles.Add(tile);
         }
     }
@@ -107,10 +109,12 @@ public partial class ConductorController : Control
 
     private void ProcessTileInteraction(bool arg1, RhythmTile tile)
     {
-        if (!arg1)
+        if (!arg1 && tile.canReduceLives)
         {
+            GD.Print($"Current Lives: {currentLives}");
             currentLives -= 1;
         }
+
         tile.Visible = false;
         tilePool.Add(tile);
 

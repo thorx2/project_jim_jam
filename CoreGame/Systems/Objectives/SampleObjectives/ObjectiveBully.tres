@@ -1,3 +1,8 @@
-[gd_resource type="Resource" format=3 uid="uid://bs6bpblmtj0fb"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bs6bpblmtj0fb"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/Objectives/ObjectiveData.cs" id="1_tukj5"]
 
 [resource]
+script = ExtResource("1_tukj5")
+SpecialNpcOfDay = 1
+QuestTitleText = "Grad some snacks from the cafeteria"
