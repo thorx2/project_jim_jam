@@ -41,6 +41,14 @@ public partial class QteManager : Control
         canQte = true;
     }
 
+    public override void _Process(double delta)
+    {
+        if (failurePlaceHolderBar.Value != GameRuntimeParameters.MaxTolerableSpread)
+        {
+            failurePlaceHolderBar.Value = GameRuntimeParameters.MaxTolerableSpread;
+        }
+    }
+
     private void OnNewGameStart()
     {
         failurePlaceHolderBar.Value = GameRuntimeParameters.MaxTolerableSpread;
@@ -55,7 +63,7 @@ public partial class QteManager : Control
             switch (type)
             {
                 case ECharacterType.EGrey:
-                    GameRuntimeParameters.GossipSpread += GameRuntimeParameters.GreyFailSpread +GameRuntimeParameters.GossipSpread;
+                    GameRuntimeParameters.GossipSpread += GameRuntimeParameters.GreyFailSpread + GameRuntimeParameters.GossipSpread;
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
                     if (activeNPC.GetECharacterType == ECharacterType.EColored &&
                         activeNPC.GetSpecialNPCStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
