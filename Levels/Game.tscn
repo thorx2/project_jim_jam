@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://coojfiqjwdcqm"]
+[gd_scene load_steps=15 format=3 uid="uid://coojfiqjwdcqm"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_xvxv3"]
 [ext_resource type="Script" path="res://CoreGame/Systems/TilemapPathSystems/PathGenerator.cs" id="2_f66ym"]
 [ext_resource type="Script" path="res://CoreGame/Systems/LevelLoader/GameLevelManager.cs" id="2_h8g33"]
+[ext_resource type="PackedScene" uid="uid://df0ajvwd8amho" path="res://CoreGame/Systems/Characters/Prefabs/Player.tscn" id="2_pphuu"]
 [ext_resource type="Resource" uid="uid://lsykkbsve4ln" path="res://CoreGame/Systems/LevelLoader/FloorConfiguration/GroundFloor.tres" id="3_modyr"]
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/GameVPScaler.cs" id="3_rw1ta"]
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/UIManager.cs" id="6_v7p5n"]
@@ -21,6 +22,7 @@ bg_color = Color(0.8, 0.419608, 0.168627, 1)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("gameplayParent")]
 script = ExtResource("1_xvxv3")
+playerScene = ExtResource("2_pphuu")
 gameplayParent = NodePath("GameSVP/GameVP/YSortEnabler")
 
 [node name="PathFinder" type="Node" parent="."]
