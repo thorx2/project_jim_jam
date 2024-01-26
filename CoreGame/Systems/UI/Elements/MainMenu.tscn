@@ -12,7 +12,7 @@ gradient = SubResource("Gradient_1dauh")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3sl45"]
 size = Vector2(40, 40)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("startGameButton")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("startGameButton", "quitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s62f2")
 startGameButton = NodePath("MenuContainer/StartGame")
+quitButton = NodePath("MenuContainer/Quit")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -70,15 +71,15 @@ theme = ExtResource("2_geqdw")
 theme_override_font_sizes/font_size = 36
 text = "Start Game"
 
-[node name="Mute" type="Button" parent="MenuContainer"]
-visible = false
+[node name="Quit" type="Button" parent="MenuContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_geqdw")
 theme_override_font_sizes/font_size = 36
-text = "Mute Audio"
+text = "Quit"
 
 [node name="SoundButton" type="TextureButton" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

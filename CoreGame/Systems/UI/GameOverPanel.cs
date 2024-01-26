@@ -28,7 +28,8 @@ public partial class GameOverPanel : Control
         }
         else
         {
-            
+            MasterSignalBus.GetInstance.LoadMapEvent?.Invoke(GameRuntimeParameters.GameDay);
+            Visible = false;
         }
     }
 

@@ -68,14 +68,21 @@ public partial class GameManager : Node2D
 
 	#region Day Management
 
-	private Random rnd = new();
+	[ExportGroup("Objectives")]
+	[Export]
+	private ObjectiveData[] possibleGameObjectives;
 
-	private ESpecialNPC npcOfTheDay;
+	[Export]
+	private float[] perDaySpreadTolerance;
 
-	public ESpecialNPC GetSpecialNPCOfDay
+	private ObjectiveData activeObjective;
+
+	public ObjectiveData GetActiveObjective
 	{
-		get => npcOfTheDay;
+		get => activeObjective;
 	}
+
+	private Random rnd = new();
 
 	public void OnDayCompleted(bool isWin)
 	{
@@ -83,12 +90,18 @@ public partial class GameManager : Node2D
 		{
 			StartNextDay();
 		}
+		else
+		{
+			GameRuntimeParameters.GossipSpread = 0;
+		}
 	}
 
 	public void StartNextDay()
 	{
+		GameRuntimeParameters.GossipSpread = 0;
+		GameRuntimeParameters.MaxTolerableSpread = perDaySpreadTolerance[GameRuntimeParameters.GameDay];
 		GameRuntimeParameters.GameDay++;
-		npcOfTheDay = (ESpecialNPC)rnd.Next(0, 4);
+		activeObjective = possibleGameObjectives[rnd.Next(0, possibleGameObjectives.Length - 1)];
 	}
 
 	#endregion

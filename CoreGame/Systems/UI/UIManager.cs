@@ -30,6 +30,7 @@ public partial class UIManager : Control
         mainMenu.Visible = true;
         gameplayUIRef.Visible = false;
         gameOverPanel.Visible = false;
+        questLabel.Text = "";
     }
 
 

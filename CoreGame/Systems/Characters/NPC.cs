@@ -33,7 +33,7 @@ public partial class NPC : Character
     [Export]
     private ESpecialNPC specialNpcStyle;
 
-    public ESpecialNPC GetSpcialNPCStyle
+    public ESpecialNPC GetSpecialNPCStyle
     {
         get => specialNpcStyle;
     }
@@ -68,6 +68,14 @@ public partial class NPC : Character
         foreach (var ray in pathCheckCast)
         {
             ray.Visible = false;
+        }
+
+        if (characterType == ECharacterType.EColored)
+        {
+            if (specialNpcStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
+            {
+                MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
+            }
         }
 
         GameRuntimeParameters.GossipSpread += 0.05f;
@@ -115,7 +123,7 @@ public partial class NPC : Character
 
         if (characterType == ECharacterType.EColored)
         {
-            if (specialNpcStyle == GameManager.GetInstance.GetSpecialNPCOfDay)
+            if (specialNpcStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
             {
                 MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
             }

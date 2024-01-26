@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://vfkcsc0hxfdg"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/Objectives/ObjectiveData.cs" id="1_q4dq4"]
+
+[resource]
+script = ExtResource("1_q4dq4")
+SpecialNpcOfDay = 4
+QuestTitleText = "Talk with the kid"

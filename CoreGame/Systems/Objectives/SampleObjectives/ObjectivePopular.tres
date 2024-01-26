@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b7atuy11dyc11"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/Objectives/ObjectiveData.cs" id="1_fqkrj"]
+
+[resource]
+script = ExtResource("1_fqkrj")
+SpecialNpcOfDay = 2
+QuestTitleText = "Help the popular kid get more instgram likes"

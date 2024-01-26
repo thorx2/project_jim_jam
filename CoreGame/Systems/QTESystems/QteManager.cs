@@ -43,7 +43,7 @@ public partial class QteManager : Control
 
     private void OnNewGameStart()
     {
-        failurePlaceHolderBar.Value = 0;
+        failurePlaceHolderBar.Value = GameRuntimeParameters.MaxTolerableSpread;
         currentProgressBar.Value = 0;
     }
 
@@ -58,7 +58,7 @@ public partial class QteManager : Control
                     GameRuntimeParameters.GossipSpread += (0.02f + GameRuntimeParameters.GossipSpread * GameRuntimeParameters.GossipSpread);
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
                     if (activeNPC.GetECharacterType == ECharacterType.EColored &&
-                        activeNPC.GetSpcialNPCStyle == GameManager.GetInstance.GetSpecialNPCOfDay)
+                        activeNPC.GetSpecialNPCStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
                     {
                         qteWindow.HideMiniGameWindows();
                         qteCoolDownTimer.Stop();
@@ -83,6 +83,11 @@ public partial class QteManager : Control
         else if (state == EQteCompleteState.EQteSuccess)
         {
             QteFlowComplete();
+        }
+
+        if (GameRuntimeParameters.GossipSpread > GameRuntimeParameters.MaxTolerableSpread)
+        {
+            MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
         }
     }
 

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://6txbwe5yqerd"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/Objectives/ObjectiveData.cs" id="1_be2sm"]
+
+[resource]
+script = ExtResource("1_be2sm")
+SpecialNpcOfDay = 3
+QuestTitleText = "Get the assignments to the professor"

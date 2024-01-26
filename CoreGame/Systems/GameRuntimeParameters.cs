@@ -2,6 +2,7 @@ using System;
 
 public static class GameRuntimeParameters
 {
+    public static float MaxTolerableSpread;
     public static float GossipSpread;
     
     public static int GameDay;
