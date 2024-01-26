@@ -1,8 +1,8 @@
 public enum ESpecialNPC
 {
-    ESocial,
-    EBully,
-    EQuiet,
     ETwins,
-    EProfessor
+    EBully,
+    ESocial,
+    EProfessor,
+    EQuiet
 }

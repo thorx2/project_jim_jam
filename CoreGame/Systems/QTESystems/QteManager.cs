@@ -57,7 +57,8 @@ public partial class QteManager : Control
                 case ECharacterType.EGrey:
                     GameRuntimeParameters.GossipSpread += (0.02f + GameRuntimeParameters.GossipSpread * GameRuntimeParameters.GossipSpread);
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
-                    if (activeNPC.GetECharacterType == ECharacterType.EColored)
+                    if (activeNPC.GetECharacterType == ECharacterType.EColored &&
+                        activeNPC.GetSpcialNPCStyle == GameManager.GetInstance.GetSpecialNPCOfDay)
                     {
                         qteWindow.HideMiniGameWindows();
                         qteCoolDownTimer.Stop();

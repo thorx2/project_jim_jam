@@ -79,7 +79,7 @@ public partial class GameManager : Node2D
 
 	private ESpecialNPC npcOfTheDay;
 
-	public ESpecialNPC GetNPCOfDay
+	public ESpecialNPC GetSpecialNPCOfDay
 	{
 		get => npcOfTheDay;
 	}
