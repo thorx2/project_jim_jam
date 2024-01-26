@@ -25,7 +25,7 @@ script = ExtResource("1_xvxv3")
 playerScene = ExtResource("2_pphuu")
 gameplayParent = NodePath("GameSVP/GameVP/YSortEnabler")
 
-[node name="PathFinder" type="Node" parent="."]
+[node name="PathFinder_Deprecated" type="Node" parent="."]
 script = ExtResource("2_f66ym")
 
 [node name="GameSVP" type="SubViewportContainer" parent="." node_paths=PackedStringArray("gameViewport")]
@@ -55,7 +55,7 @@ y_sort_enabled = true
 
 [node name="MasterUI" type="CanvasLayer" parent="."]
 
-[node name="RootContainer" type="Control" parent="MasterUI" node_paths=PackedStringArray("mainMenu", "inGameMenu")]
+[node name="RootContainer" type="Control" parent="MasterUI" node_paths=PackedStringArray("mainMenu", "gameplayUIRef")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_v7p5n")
 mainMenu = NodePath("MainMenu")
-inGameMenu = NodePath("GamePlayUI")
+gameplayUIRef = NodePath("GamePlayUI")
 
 [node name="MainMenu" parent="MasterUI/RootContainer" instance=ExtResource("7_h6qur")]
 layout_mode = 1
@@ -79,7 +79,7 @@ grow_vertical = 2
 script = ExtResource("9_8plh6")
 currentProgressBar = NodePath("CurrentSpreadBar")
 failurePlaceHolderBar = NodePath("FailureDisplay")
-qteCoolDownTimer = NodePath("QteWorldCDTimer")
+qteCoolDownTimer = NodePath("../../../Timers/QteWorldCDTimer")
 qteWindow = NodePath("QTEWindow")
 
 [node name="FailureDisplay" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
@@ -133,6 +133,8 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 
-[node name="QteWorldCDTimer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI"]
+[node name="Timers" type="Node" parent="."]
+
+[node name="QteWorldCDTimer" type="Timer" parent="Timers"]
 wait_time = 5.0
 autostart = true
