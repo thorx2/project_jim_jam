@@ -7,16 +7,9 @@ public partial class NPC : Character
     [ExportGroup("Reference")]
     [Export]
     private AnimatedSprite2D visualSprite;
-
-    [ExportGroup("Reference")]
-    [Export]
-    private Sprite2D speechBubble;
-
-    [ExportGroup("Reference")]
     [Export]
     private Area2D gossipBubble;
 
-    [ExportGroup("Reference")]
     [Export]
     private CollisionShape2D gossipSpreadCircle;
 
@@ -24,7 +17,6 @@ public partial class NPC : Character
     [Export]
     private float gossipBurstRadius;
 
-    [ExportCategory("Gameplay Configuration")]
     [Export]
     private Vector2 qteDuration;
 
@@ -32,6 +24,9 @@ public partial class NPC : Character
     [ExportCategory("Special Characters Data")]
     [Export]
     private ESpecialNPC specialNpcStyle;
+
+    private bool characterCorrupted;
+
 
     public ESpecialNPC GetSpecialNPCStyle
     {
@@ -63,7 +58,7 @@ public partial class NPC : Character
 
     private void OnGossipHitCharacter(Area2D area)
     {
-        speechBubble.Visible = true;
+        characterCorrupted = true;
 
         foreach (var ray in pathCheckCast)
         {
@@ -78,12 +73,12 @@ public partial class NPC : Character
             }
         }
 
-        GameRuntimeParameters.GossipSpread += 0.05f;
+        GameRuntimeParameters.GossipSpread += GameRuntimeParameters.BurstCollateralSpread;
     }
 
     public override void _Process(double delta)
     {
-        if (!speechBubble.Visible)
+        if (!characterCorrupted)
         {
             foreach (var ray in pathCheckCast)
             {
@@ -114,7 +109,7 @@ public partial class NPC : Character
 
     internal void TriggerGossipBurst()
     {
-        speechBubble.Visible = true;
+        characterCorrupted = true;
         foreach (var ray in pathCheckCast)
         {
             ray.Visible = false;

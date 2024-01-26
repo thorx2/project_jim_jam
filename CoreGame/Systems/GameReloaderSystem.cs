@@ -4,23 +4,23 @@ using Godot;
 
 public partial class GameReloaderSystem : Node2D
 {
-    [Export]
-    private PackedScene game;
+	[Export]
+	private PackedScene game;
 
-    private Node2D instantiatedGame;
+	private Node2D instantiatedGame;
 
-    public override void _Ready()
-    {
-        instantiatedGame = game.Instantiate() as Node2D;
-        MasterSignalBus.GetInstance.GameHardReset += OnGameHardReset;
-        AddChild(instantiatedGame);
-    }
+	public override void _Ready()
+	{
+		instantiatedGame = game.Instantiate() as Node2D;
+		MasterSignalBus.GetInstance.GameHardReset += OnGameHardReset;
+		AddChild(instantiatedGame);
+	}
 
-    private void OnGameHardReset()
-    {
-        instantiatedGame.QueueFree();
-        instantiatedGame = game.Instantiate() as Node2D;
-        MasterSignalBus.GetInstance.GameHardReset += OnGameHardReset;
-        AddChild(instantiatedGame);
-    }
+	private void OnGameHardReset()
+	{
+		instantiatedGame.QueueFree();
+		instantiatedGame = game.Instantiate() as Node2D;
+		MasterSignalBus.GetInstance.GameHardReset += OnGameHardReset;
+		AddChild(instantiatedGame);
+	}
 }

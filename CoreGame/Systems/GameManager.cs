@@ -75,6 +75,13 @@ public partial class GameManager : Node2D
 	[Export]
 	private float[] perDaySpreadTolerance;
 
+	[ExportCategory("Spread Factors")]
+	[Export]
+	private float greyCharacterFailSpreadValue;
+
+	[Export]
+	private float coloredCharacterFailedSpreadValue;
+
 	private ObjectiveData activeObjective;
 
 	public ObjectiveData GetActiveObjective
@@ -99,9 +106,11 @@ public partial class GameManager : Node2D
 	public void StartNextDay()
 	{
 		GameRuntimeParameters.GossipSpread = 0;
+		GameRuntimeParameters.ColorFailSpread = coloredCharacterFailedSpreadValue;
+		GameRuntimeParameters.GreyFailSpread = greyCharacterFailSpreadValue;
 		GameRuntimeParameters.MaxTolerableSpread = perDaySpreadTolerance[GameRuntimeParameters.GameDay];
+		activeObjective = possibleGameObjectives[rnd.Next(0, possibleGameObjectives.Length)];
 		GameRuntimeParameters.GameDay++;
-		activeObjective = possibleGameObjectives[rnd.Next(0, possibleGameObjectives.Length - 1)];
 	}
 
 	#endregion
