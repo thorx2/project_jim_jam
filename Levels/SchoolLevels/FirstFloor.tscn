@@ -12,10 +12,9 @@ metadata/_edit_vertical_guides_ = [0.0, 900.0]
 metadata/_edit_horizontal_guides_ = [1200.0]
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(446, 761)
+position = Vector2(447, 1083)
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-33, -16)
 tile_set = ExtResource("2_mnqec")
 rendering_quadrant_size = 8
 format = 2
