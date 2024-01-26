@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlhhwoh8rq7fs"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/QTESystems/QteWindow.cs" id="1_m5e33"]
+[ext_resource type="Texture2D" uid="uid://cypf226cgubq0" path="res://The Art Folder/WASD Keys/W.png" id="2_3dfmw"]
+[ext_resource type="Texture2D" uid="uid://caveall1wi5di" path="res://The Art Folder/WASD Keys/A.png" id="3_7d5sr"]
+[ext_resource type="Texture2D" uid="uid://b35o5dh500gh1" path="res://The Art Folder/WASD Keys/S.png" id="4_fsxn2"]
+[ext_resource type="Texture2D" uid="uid://d4ce7otuaqjwj" path="res://The Art Folder/WASD Keys/D.png" id="5_lswx1"]
+
+[sub_resource type="Gradient" id="Gradient_iifkw"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_drx6o"]
+gradient = SubResource("Gradient_iifkw")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8b5ar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3dfmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7d5sr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fsxn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lswx1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="QTEWindow" type="Control" node_paths=PackedStringArray("qteTimer", "quickActionImage")]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_m5e33")
+qteTimer = NodePath("CurrentQTETimer")
+quickActionImage = NodePath("QTEImageContainer/AnimatedSprite2D")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_drx6o")
+
+[node name="CurrentQTETimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="QTEImageContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="QTEImageContainer"]
+position = Vector2(31, 34)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_8b5ar")
+autoplay = "default"
+speed_scale = 0.0
+
+[node name="TimerBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_right = -25.0
+grow_horizontal = 0
+grow_vertical = 2
+fill_mode = 3
+show_percentage = false
+
+[node name="MashBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = 65.0
+grow_vertical = 2
+fill_mode = 3
+show_percentage = false

@@ -135,7 +135,7 @@ collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_0cmmb")
 characterVisual = NodePath("Visual")
-pathCheckCast = NodePath("RayCast2D")
+pathCheckCast = [NodePath("RayCast2D")]
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

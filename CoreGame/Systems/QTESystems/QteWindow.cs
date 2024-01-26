@@ -23,6 +23,8 @@ public partial class QteWindow : Control
         qteTimer.OneShot = true;
     }
 
+
+
     private void OnQteTimeout()
     {
         MasterSignalBus.GetInstance.OnQteCompleteEvent(lastCharacterType, EQteCompleteState.EQteFailed);

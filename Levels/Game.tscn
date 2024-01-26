@@ -1,20 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://coojfiqjwdcqm"]
+[gd_scene load_steps=14 format=3 uid="uid://coojfiqjwdcqm"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_xvxv3"]
 [ext_resource type="Script" path="res://CoreGame/Systems/TilemapPathSystems/PathGenerator.cs" id="2_f66ym"]
 [ext_resource type="Script" path="res://CoreGame/Systems/LevelLoader/GameLevelManager.cs" id="2_h8g33"]
-[ext_resource type="PackedScene" uid="uid://df0ajvwd8amho" path="res://CoreGame/Systems/Characters/Prefabs/Player.tscn" id="2_pphuu"]
 [ext_resource type="Resource" uid="uid://lsykkbsve4ln" path="res://CoreGame/Systems/LevelLoader/FloorConfiguration/GroundFloor.tres" id="3_modyr"]
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/GameVPScaler.cs" id="3_rw1ta"]
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/UIManager.cs" id="6_v7p5n"]
 [ext_resource type="PackedScene" uid="uid://dr7vht16ow0hy" path="res://CoreGame/Systems/UI/Elements/MainMenu.tscn" id="7_h6qur"]
 [ext_resource type="Script" path="res://CoreGame/Systems/QTESystems/QteManager.cs" id="9_8plh6"]
 [ext_resource type="Theme" uid="uid://cv6ctxi60ly43" path="res://CoreGame/Systems/UI/BaseGameTheme.tres" id="10_en48v"]
-[ext_resource type="Script" path="res://CoreGame/Systems/QTESystems/QteWindow.cs" id="11_h3cyf"]
-[ext_resource type="Texture2D" uid="uid://cypf226cgubq0" path="res://The Art Folder/WASD Keys/W.png" id="12_b5ecf"]
-[ext_resource type="Texture2D" uid="uid://caveall1wi5di" path="res://The Art Folder/WASD Keys/A.png" id="13_ciiil"]
-[ext_resource type="Texture2D" uid="uid://b35o5dh500gh1" path="res://The Art Folder/WASD Keys/S.png" id="14_umys2"]
-[ext_resource type="Texture2D" uid="uid://d4ce7otuaqjwj" path="res://The Art Folder/WASD Keys/D.png" id="15_a130b"]
+[ext_resource type="PackedScene" uid="uid://dlhhwoh8rq7fs" path="res://CoreGame/Systems/UI/Elements/QteWindow.tscn" id="11_fiqh7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u7uq"]
 bg_color = Color(0.709804, 0.34902, 0.298039, 1)
@@ -24,35 +19,8 @@ bg_color = Color(0.709804, 0.34902, 0.298039, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eq6n1"]
 bg_color = Color(0.8, 0.419608, 0.168627, 1)
 
-[sub_resource type="Gradient" id="Gradient_iifkw"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_drx6o"]
-gradient = SubResource("Gradient_iifkw")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8b5ar"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_b5ecf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_ciiil")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_umys2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_a130b")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Game" type="Node2D" node_paths=PackedStringArray("gameplayParent")]
 script = ExtResource("1_xvxv3")
-playerScene = ExtResource("2_pphuu")
 gameplayParent = NodePath("GameSVP/GameVP/YSortEnabler")
 
 [node name="PathFinder" type="Node" parent="."]
@@ -99,7 +67,7 @@ inGameMenu = NodePath("GamePlayUI")
 [node name="MainMenu" parent="MasterUI/RootContainer" instance=ExtResource("7_h6qur")]
 layout_mode = 1
 
-[node name="GamePlayUI" type="Control" parent="MasterUI/RootContainer" node_paths=PackedStringArray("currentProgressBar", "failurePlaceHolderBar", "qteCoolDownTimer", "qteWindow")]
+[node name="GamePlayUI" type="Control" parent="MasterUI/RootContainer" node_paths=PackedStringArray("currentProgressBar", "failurePlaceHolderBar", "qteCoolDownTimer")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -111,7 +79,6 @@ script = ExtResource("9_8plh6")
 currentProgressBar = NodePath("CurrentSpreadBar")
 failurePlaceHolderBar = NodePath("FailureDisplay")
 qteCoolDownTimer = NodePath("QteWorldCDTimer")
-qteWindow = NodePath("QTEWindow")
 
 [node name="FailureDisplay" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
 layout_mode = 1
@@ -160,52 +127,8 @@ text = "Day 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QTEWindow" type="Control" parent="MasterUI/RootContainer/GamePlayUI" node_paths=PackedStringArray("qteTimer", "quickActionImage")]
-visible = false
+[node name="QTEWindow" parent="MasterUI/RootContainer/GamePlayUI" instance=ExtResource("11_fiqh7")]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -240.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("11_h3cyf")
-qteTimer = NodePath("CurrentQTETimer")
-quickActionImage = NodePath("QTEImageContainer/AnimatedSprite2D")
-
-[node name="BG" type="TextureRect" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_drx6o")
-
-[node name="CurrentQTETimer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
-wait_time = 3.0
-
-[node name="QTEImageContainer" type="Control" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MasterUI/RootContainer/GamePlayUI/QTEWindow/QTEImageContainer"]
-position = Vector2(31, 34)
-scale = Vector2(10, 10)
-sprite_frames = SubResource("SpriteFrames_8b5ar")
-autoplay = "default"
-speed_scale = 0.0
 
 [node name="QteWorldCDTimer" type="Timer" parent="MasterUI/RootContainer/GamePlayUI"]
 wait_time = 10.0

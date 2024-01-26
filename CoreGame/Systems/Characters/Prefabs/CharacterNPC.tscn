@@ -16,7 +16,7 @@ motion_mode = 1
 script = ExtResource("3_pfqeo")
 visualSprite = NodePath("Visual")
 characterType = 2
-pathCheckCast = NodePath("RayCast2D")
+pathCheckCast = [NodePath("RayCast2D")]
 
 [node name="Visual" type="Sprite2D" parent="."]
 y_sort_enabled = true

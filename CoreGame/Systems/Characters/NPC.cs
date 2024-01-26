@@ -18,12 +18,15 @@ public partial class NPC : Character
 
     public override void _Process(double delta)
     {
-        if (pathCheckCast.IsColliding())
+        foreach (var ray in pathCheckCast)
         {
-            var p = pathCheckCast.GetCollider() as Player;
-            if (p != null && p.CurrentPlayerState == EPlayerState.EPlayerWalking)
+            if (ray.IsColliding())
             {
-                MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType);
+                var p = ray.GetCollider() as Player;
+                if (p != null && p.CurrentPlayerState == EPlayerState.EPlayerWalking)
+                {
+                    MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType);
+                }
             }
         }
     }

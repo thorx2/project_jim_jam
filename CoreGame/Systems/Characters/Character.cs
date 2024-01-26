@@ -9,7 +9,7 @@ public partial class Character : CharacterBody2D
     protected ECharacterType characterType;
 
     [Export]
-    protected RayCast2D pathCheckCast;
+    protected RayCast2D[] pathCheckCast;
 
     public void SnapCharacterToTileOnMap(Vector2 pos)
     {
