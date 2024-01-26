@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://lsykkbsve4ln"]
 
-[ext_resource type="PackedScene" uid="uid://b5qf4xjfeqxdq" path="res://Levels/SchoolLevels/GroundFloor.tscn" id="1_ayh03"]
+[ext_resource type="PackedScene" uid="uid://biwu73wkddqg5" path="res://Levels/SchoolLevels/FirstFloor.tscn" id="1_omp38"]
 [ext_resource type="Script" path="res://CoreGame/Systems/LevelLoader/FloorConfiguration/LevelData.cs" id="1_wuv7g"]
 
 [resource]
 script = ExtResource("1_wuv7g")
-LoadMap = ExtResource("1_ayh03")
+LoadMap = ExtResource("1_omp38")
