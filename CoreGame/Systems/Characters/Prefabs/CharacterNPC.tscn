@@ -72,13 +72,12 @@ size = Vector2(15, 11)
 [sub_resource type="CircleShape2D" id="CircleShape2D_n8xmg"]
 resource_local_to_scene = true
 
-[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("visualSprite", "speechBubble", "gossipBubble", "gossipSpreadCircle", "pathCheckCast")]
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("visualSprite", "gossipBubble", "gossipSpreadCircle", "pathCheckCast")]
 y_sort_enabled = true
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("3_pfqeo")
 visualSprite = NodePath("Visual")
-speechBubble = NodePath("SpeechBubble")
 gossipBubble = NodePath("Area2D")
 gossipSpreadCircle = NodePath("Area2D/CollisionShape2D")
 gossipBurstRadius = 40.0
