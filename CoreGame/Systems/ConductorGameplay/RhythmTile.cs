@@ -110,12 +110,12 @@ public partial class RhythmTile : Area2D
         }
     }
 
-    public void InitTileMovement(Vector2 pos, int key)
+    public void InitTileMovement(Vector2 pos, int key, string animation)
     {
         processDone = false;
         GlobalPosition = pos;
         Visible = true;
         tileKey = key;
-        visualSprite.Frame = key;
+        visualSprite.Play(animation);
     }
 }

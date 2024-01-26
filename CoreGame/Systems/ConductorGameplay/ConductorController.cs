@@ -30,6 +30,8 @@ public partial class ConductorController : Control
 
     private bool isRunningGame;
 
+    private NPC activeNPC;
+
     public override void _Ready()
     {
         tileSpawnTimer.Stop();
@@ -52,20 +54,40 @@ public partial class ConductorController : Control
 
     private void SpawnRandomTile()
     {
-        int key = rnd.Next(0, 3);
+        int key = rnd.Next(0, 4);   // Max Value is excluded that's why 'D' was never being picked
+
+        if (activeNPC.GetSpecialNPCStyle != ESpecialNPC.EBully)
+        {
+            // Just spawn one tile for non bullies
+            SpawnTileAtKey(key, GetAnimationForActiveNPC());
+            return;
+        }
+        else
+        {
+            // Spawn at every tile except the key
+            for (int i = 0; i < 3; i++)
+            {
+                if (i != key)
+                    SpawnTileAtKey(i, GetAnimationForActiveNPC());
+            }
+        }
+    }
+
+    private void SpawnTileAtKey(int key, string animation)
+    {
         if (tilePool.Count > 0)
         {
             var tile = tilePool[0];
             tilePool.RemoveAt(0);
             activeTiles.Add(tile);
-            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key);
+            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key, animation);
         }
         else
         {
             var tile = tileTemplate.Instantiate() as RhythmTile;
             tile.TileInteractionHappened += ProcessTileInteraction;
             AddChild(tile);
-            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key);
+            tile.InitTileMovement(dropSpawnLocation[key].GlobalPosition, key, animation);
             activeTiles.Add(tile);
         }
     }
@@ -107,7 +129,7 @@ public partial class ConductorController : Control
         SetProcessInput(false);
     }
 
-    public void Show(ECharacterType type, float duration)
+    public void Show(ECharacterType type, float duration, NPC npc)
     {
         lastCharacterType = type;
         gameDuration = duration;
@@ -116,5 +138,20 @@ public partial class ConductorController : Control
         currentLives = maxLives;
         isRunningGame = true;
         currentRoundDuration = 0;
+        activeNPC = npc;
+    }
+
+    private string GetAnimationForActiveNPC()
+    {
+        switch (activeNPC.GetSpecialNPCStyle)
+        {
+            case ESpecialNPC.ESocial:    return "Influenza";
+            case ESpecialNPC.ETwins:     return "Twins";
+            case ESpecialNPC.EBully:     return "Bully";
+            case ESpecialNPC.EQuiet:     return "Quiet";
+            case ESpecialNPC.EProfessor: return "Professor";
+        }
+
+        return "default";
     }
 }

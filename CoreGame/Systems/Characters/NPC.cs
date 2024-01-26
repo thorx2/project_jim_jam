@@ -4,124 +4,124 @@ using CoreGame.GameSystems.EventManagement;
 using Godot;
 public partial class NPC : Character
 {
-    [ExportGroup("Reference")]
-    [Export]
-    private AnimatedSprite2D visualSprite;
-    [Export]
-    private Area2D gossipBubble;
+	[ExportGroup("Reference")]
+	[Export]
+	private AnimatedSprite2D visualSprite;
+	[Export]
+	private Area2D gossipBubble;
 
-    [Export]
-    private CollisionShape2D gossipSpreadCircle;
+	[Export]
+	private CollisionShape2D gossipSpreadCircle;
 
-    [ExportCategory("Gameplay Configuration")]
-    [Export]
-    private float gossipBurstRadius;
+	[ExportCategory("Gameplay Configuration")]
+	[Export]
+	private float gossipBurstRadius;
 
-    [Export]
-    private Vector2 qteDuration;
-
-
-    [ExportCategory("Special Characters Data")]
-    [Export]
-    private ESpecialNPC specialNpcStyle;
-
-    private bool characterCorrupted;
+	[Export]
+	private Vector2 qteDuration;
 
 
-    public ESpecialNPC GetSpecialNPCStyle
-    {
-        get => specialNpcStyle;
-    }
-    public Vector2 GetQteDuration
-    {
-        get => qteDuration;
-    }
+	[ExportCategory("Special Characters Data")]
+	[Export]
+	private ESpecialNPC specialNpcStyle;
 
-    private Random rnd = new();
-    public override void _Ready()
-    {
-        base._Ready();
-        MasterSignalBus.GetInstance.LevelLoadedEvent += OnMapLoaded;
-        if (characterType == ECharacterType.EColored)
-        {
-            visualSprite.Play("special");
-            visualSprite.Frame = (int)specialNpcStyle;
-        }
-        else
-        {
-            visualSprite.Play("grey");
-            visualSprite.Frame = rnd.Next(0, visualSprite.SpriteFrames.GetFrameCount("grey"));
-        }
+	private bool characterCorrupted;
 
-        gossipBubble.AreaEntered += OnGossipHitCharacter;
-    }
 
-    private void OnGossipHitCharacter(Area2D area)
-    {
-        characterCorrupted = true;
+	public ESpecialNPC GetSpecialNPCStyle
+	{
+		get => specialNpcStyle;
+	}
+	public Vector2 GetQteDuration
+	{
+		get => qteDuration;
+	}
 
-        foreach (var ray in pathCheckCast)
-        {
-            ray.Visible = false;
-        }
+	private Random rnd = new();
+	public override void _Ready()
+	{
+		base._Ready();
+		MasterSignalBus.GetInstance.LevelLoadedEvent += OnMapLoaded;
+		if (characterType == ECharacterType.EColored)
+		{
+			visualSprite.Play("special");
+			visualSprite.Frame = (int)specialNpcStyle;
+		}
+		else
+		{
+			visualSprite.Play("grey");
+			visualSprite.Frame = rnd.Next(0, visualSprite.SpriteFrames.GetFrameCount("grey"));
+		}
 
-        if (characterType == ECharacterType.EColored)
-        {
-            if (specialNpcStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
-            {
-                MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
-            }
-        }
+		gossipBubble.AreaEntered += OnGossipHitCharacter;
+	}
 
-        GameRuntimeParameters.GossipSpread += GameRuntimeParameters.BurstCollateralSpread;
-    }
+	private void OnGossipHitCharacter(Area2D area)
+	{
+		characterCorrupted = true;
 
-    public override void _Process(double delta)
-    {
-        if (!characterCorrupted)
-        {
-            foreach (var ray in pathCheckCast)
-            {
-                if (ray.IsColliding())
-                {
-                    var p = ray.GetCollider() as Player;
-                    if (p != null && p.CurrentPlayerState == EPlayerState.EPlayerWalking)
-                    {
-                        MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType, this);
-                    }
-                }
-            }
-        }
-    }
+		foreach (var ray in pathCheckCast)
+		{
+			ray.Visible = false;
+		}
 
-    public override void _ExitTree()
-    {
-        MasterSignalBus.GetInstance.LevelLoadedEvent -= OnMapLoaded;
-    }
+		if (characterType == ECharacterType.EColored)
+		{
+			if (specialNpcStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
+			{
+				MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
+			}
+		}
 
-    private void OnMapLoaded(Vector2 vector, TileMap map)
-    {
-        if (Visible)
-        {
-            SnapCharacterToTileOnMap(GlobalPosition);
-        }
-    }
+		GameRuntimeParameters.GossipSpread += GameRuntimeParameters.BurstCollateralSpread;
+	}
 
-    internal void TriggerGossipBurst()
-    {
-        characterCorrupted = true;
-        foreach (var ray in pathCheckCast)
-        {
-            ray.Visible = false;
-        }
-        (gossipSpreadCircle.Shape as CircleShape2D).Radius = gossipBurstRadius;
+	public override void _Process(double delta)
+	{
+		if (!characterCorrupted)
+		{
+			foreach (var ray in pathCheckCast)
+			{
+				if (ray.IsColliding())
+				{
+					var p = ray.GetCollider() as Player;
+					if (p != null && p.CurrentPlayerState == EPlayerState.EPlayerWalking)
+					{
+						MasterSignalBus.GetInstance.StartQteEvent?.Invoke(characterType, this);
+					}
+				}
+			}
+		}
+	}
 
-        if (characterType == ECharacterType.EColored)
-        {
-            if (specialNpcStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
-            {
-                MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
-            }
-        }
-    }
+	public override void _ExitTree()
+	{
+		MasterSignalBus.GetInstance.LevelLoadedEvent -= OnMapLoaded;
+	}
+
+	private void OnMapLoaded(Vector2 vector, TileMap map)
+	{
+		if (Visible)
+		{
+			SnapCharacterToTileOnMap(GlobalPosition);
+		}
+	}
+
+	internal void TriggerGossipBurst()
+	{
+		characterCorrupted = true;
+		foreach (var ray in pathCheckCast)
+		{
+			ray.Visible = false;
+		}
+		(gossipSpreadCircle.Shape as CircleShape2D).Radius = gossipBurstRadius;
+
+		if (characterType == ECharacterType.EColored)
+		{
+			if (specialNpcStyle == GameManager.GetInstance.GetActiveObjective.SpecialNpcOfDay)
+			{
+				MasterSignalBus.GetInstance.OnDayOver?.Invoke(false);
+			}
+		}
+	}
 }
