@@ -36,23 +36,23 @@ public partial class MovementSubsystem : Node
 	{
 		Vector2 inputDirection = new Vector2(Input.GetAxis("move_left", "move_right"), Input.GetAxis("move_up", "move_down"));
 
-        {   // Fuckall way to negate diagonal movement
-            if (direction.X == 0f && inputDirection.X != 0f)
-                wasMovingVertical = false;
+		{   // Fuckall way to negate diagonal movement
+			if (direction.X == 0f && inputDirection.X != 0f)
+				wasMovingVertical = false;
 
-            if (direction.Y == 0f && inputDirection.Y != 0f)
-                wasMovingVertical = true;
+			if (direction.Y == 0f && inputDirection.Y != 0f)
+				wasMovingVertical = true;
 
-            direction = inputDirection;
-            
-            if (direction.X != 0f && direction.Y != 0f)
-            {
-                if (wasMovingVertical)
-                    direction = new Vector2(0f, inputDirection.Y);
-                else
-                    direction = new Vector2(inputDirection.X, 0f);
-            }
-        }
+			direction = inputDirection;
+			
+			if (direction.X != 0f && direction.Y != 0f)
+			{
+				if (wasMovingVertical)
+					direction = new Vector2(0f, inputDirection.Y);
+				else
+					direction = new Vector2(inputDirection.X, 0f);
+			}
+		}
 
 		if (direction != Vector2.Zero && !isMoving && PathGenerator.GetPathGeneratorInstance != null)
 		{

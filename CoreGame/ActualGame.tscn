@@ -109,6 +109,7 @@ offset_top = -170.0
 offset_right = 66.0
 offset_bottom = 170.0
 grow_vertical = 2
+theme = ExtResource("10_aoun3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5u7uq")
 max_value = 1.0
 value = 0.85
