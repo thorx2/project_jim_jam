@@ -17,6 +17,8 @@ public partial class QteManager : Control
     [Export]
     private QteWindow qteWindow;
 
+    private NPC activeNPC;
+
     private bool canQte = false;
 
     public override void _Ready()
@@ -27,9 +29,11 @@ public partial class QteManager : Control
 
         MasterSignalBus.GetInstance.StartGameEvent += OnNewGameStart;
 
+        qteCoolDownTimer.OneShot = true;
+
         qteCoolDownTimer.Timeout += OnQteTimerTimeout;
 
-        qteCoolDownTimer.Start(1);
+        qteCoolDownTimer.Start();
     }
 
     private void OnQteTimerTimeout()
@@ -45,6 +49,7 @@ public partial class QteManager : Control
 
     private void OnQteCompleted(ECharacterType type, EQteCompleteState state)
     {
+        canQte = false;
         if (state == EQteCompleteState.EQteFailed)
         {
             switch (type)
@@ -58,18 +63,22 @@ public partial class QteManager : Control
                     currentProgressBar.Value += GameRuntimeParameters.GossipSpread;
                     break;
             }
+
+            activeNPC.TriggerGossipBurst();
         }
         GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerWalking;
+        qteCoolDownTimer.Stop();
         qteCoolDownTimer.Start();
     }
 
-    private void OnQteRequested(ECharacterType type, float qteTime)
+    private void OnQteRequested(ECharacterType type, NPC npc)
     {
         if (canQte)
         {
+            activeNPC = npc;
             GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerInQTE;
             canQte = false;
-            qteWindow.Show(type, qteTime);
+            qteWindow.Show(type, npc.GetQteDuration);
         }
     }
 }

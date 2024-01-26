@@ -37,12 +37,11 @@ layer_5/tile_data = PackedInt32Array(196610, 589824, 35, 262146, 589824, 36, 524
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(103, 151)
 
-[node name="NPCBoy" parent="." instance=ExtResource("4_18fup")]
-position = Vector2(70, 73)
+[node name="NPC" parent="." instance=ExtResource("4_18fup")]
+position = Vector2(140, 124)
 qteDuration = 2.0
 
-[node name="NPC" parent="." instance=ExtResource("4_18fup")]
-position = Vector2(159, 122)
+[node name="NPC_2" parent="." instance=ExtResource("4_18fup")]
+position = Vector2(68, 79)
 characterFrame = 7
-qteDuration = 10.0
-characterType = 1
+qteDuration = 7.0
