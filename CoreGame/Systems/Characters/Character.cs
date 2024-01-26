@@ -16,7 +16,7 @@ public partial class Character : CharacterBody2D
     [Export]
     protected RayCast2D[] pathCheckCast;
 
-    public void SnapCharacterToTileOnMap(Vector2 pos)
+    public virtual void SnapCharacterToTileOnMap(Vector2 pos)
     {
         var pointPos = PathGenerator.GetPathGeneratorInstance.GetMapPointForPosition(pos);
         GlobalPosition = PathGenerator.GetPathGeneratorInstance.GetPointPositionCentered(pointPos);

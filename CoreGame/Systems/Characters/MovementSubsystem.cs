@@ -39,7 +39,6 @@ public partial class MovementSubsystem : Node
 
             pathCheckCast.TargetPosition = direction * tileSize;
             pathCheckCast.ForceRaycastUpdate();
-
             var currentCell = PathGenerator.GetPathGeneratorInstance.GetMapPointForPosition(parentMovingNode.GlobalPosition);
             var targetTile = new Vector2I((int)(currentCell.X + direction.X), (int)(currentCell.Y + direction.Y));
             var tileData = PathGenerator.GetPathGeneratorInstance.GetTileData(0, targetTile);
@@ -65,5 +64,10 @@ public partial class MovementSubsystem : Node
                 parentMovingNode.GlobalPosition = parentMovingNode.GlobalPosition.MoveToward(targetPosition, Speed);
             }
         }
+    }
+
+    public void ForceSetTargetPosition(Vector2 pos)
+    {
+        targetPosition = pos;
     }
 }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5qf4xjfeqxdq"]
+[gd_scene load_steps=5 format=3 uid="uid://b5qf4xjfeqxdq"]
 
 [ext_resource type="Script" path="res://Levels/LevelController.cs" id="1_stk3n"]
 [ext_resource type="TileSet" uid="uid://hjqko05y5f6r" path="res://Levels/GameTileMap.tres" id="2_gmfu1"]
 [ext_resource type="PackedScene" uid="uid://np778k3nxldg" path="res://CoreGame/Systems/Characters/Prefabs/CharacterNPC.tscn" id="4_18fup"]
+[ext_resource type="PackedScene" uid="uid://dpj7x5jhv7i6i" path="res://CoreGame/Systems/InWorldElements/DayWinTile.tscn" id="4_785ks"]
 
 [node name="GroundFloor" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "levelMapReference")]
 y_sort_enabled = true
@@ -51,3 +52,6 @@ specialNpcStyle = 3
 position = Vector2(169, 125)
 qteDuration = Vector2(10, 0)
 characterType = 1
+
+[node name="DayWinTile" parent="." instance=ExtResource("4_785ks")]
+position = Vector2(104, 54)

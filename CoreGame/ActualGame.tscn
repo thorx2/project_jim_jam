@@ -1,0 +1,197 @@
+[gd_scene load_steps=18 format=3 uid="uid://dkwerl2agket4"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_t7rrp"]
+[ext_resource type="PackedScene" uid="uid://df0ajvwd8amho" path="res://CoreGame/Systems/Characters/Prefabs/Player.tscn" id="2_w5l5r"]
+[ext_resource type="Script" path="res://CoreGame/Systems/TilemapPathSystems/PathGenerator.cs" id="3_0fuy3"]
+[ext_resource type="Script" path="res://CoreGame/Systems/UI/GameVPScaler.cs" id="4_vbkws"]
+[ext_resource type="Script" path="res://CoreGame/Systems/LevelLoader/GameLevelManager.cs" id="5_qjvro"]
+[ext_resource type="Resource" uid="uid://lsykkbsve4ln" path="res://CoreGame/Systems/LevelLoader/FloorConfiguration/GroundFloor.tres" id="6_uqn6d"]
+[ext_resource type="Script" path="res://CoreGame/Systems/UI/UIManager.cs" id="7_mgynw"]
+[ext_resource type="PackedScene" uid="uid://dr7vht16ow0hy" path="res://CoreGame/Systems/UI/Elements/MainMenu.tscn" id="8_231jm"]
+[ext_resource type="Script" path="res://CoreGame/Systems/QTESystems/QteManager.cs" id="9_kkgd6"]
+[ext_resource type="Theme" uid="uid://cv6ctxi60ly43" path="res://CoreGame/Systems/UI/BaseGameTheme.tres" id="10_aoun3"]
+[ext_resource type="PackedScene" uid="uid://dlhhwoh8rq7fs" path="res://CoreGame/Systems/UI/Elements/QteWindow.tscn" id="11_dia8o"]
+[ext_resource type="Script" path="res://CoreGame/Systems/UI/GameOverPanel.cs" id="12_ywh3g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u7uq"]
+bg_color = Color(0.709804, 0.34902, 0.298039, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tf7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eq6n1"]
+bg_color = Color(0.8, 0.419608, 0.168627, 1)
+
+[sub_resource type="Gradient" id="Gradient_t4dho"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ejl60"]
+gradient = SubResource("Gradient_t4dho")
+
+[node name="GameReloader" type="Node2D" node_paths=PackedStringArray("gameplayParent")]
+script = ExtResource("1_t7rrp")
+playerScene = ExtResource("2_w5l5r")
+gameplayParent = NodePath("GameSVP/GameVP/YSortEnabler")
+
+[node name="PathFinder_Deprecated" type="Node" parent="."]
+script = ExtResource("3_0fuy3")
+
+[node name="GameSVP" type="SubViewportContainer" parent="." node_paths=PackedStringArray("gameViewport")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 160.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_vbkws")
+gameViewport = NodePath("GameVP")
+
+[node name="GameVP" type="SubViewport" parent="GameSVP" node_paths=PackedStringArray("gameplayMasterParent")]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(160, 144)
+render_target_update_mode = 4
+script = ExtResource("5_qjvro")
+gameMaps = Array[Resource]([ExtResource("6_uqn6d")])
+gameplayMasterParent = NodePath("YSortEnabler")
+
+[node name="YSortEnabler" type="Node2D" parent="GameSVP/GameVP"]
+y_sort_enabled = true
+
+[node name="MasterUI" type="CanvasLayer" parent="."]
+
+[node name="RootContainer" type="Control" parent="MasterUI" node_paths=PackedStringArray("dayLabel", "mainMenu", "gameplayUIRef", "gameOverPanel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_mgynw")
+dayLabel = NodePath("GamePlayUI/DayDisplay")
+mainMenu = NodePath("MainMenu")
+gameplayUIRef = NodePath("GamePlayUI")
+gameOverPanel = NodePath("GameOverUI")
+
+[node name="MainMenu" parent="MasterUI/RootContainer" instance=ExtResource("8_231jm")]
+layout_mode = 1
+
+[node name="GamePlayUI" type="Control" parent="MasterUI/RootContainer" node_paths=PackedStringArray("currentProgressBar", "failurePlaceHolderBar", "qteCoolDownTimer", "qteWindow")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_kkgd6")
+currentProgressBar = NodePath("CurrentSpreadBar")
+failurePlaceHolderBar = NodePath("FailureDisplay")
+qteCoolDownTimer = NodePath("../../../Timers/QteWorldCDTimer")
+qteWindow = NodePath("QTEWindow")
+
+[node name="FailureDisplay" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -170.0
+offset_right = 66.0
+offset_bottom = 170.0
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_5u7uq")
+max_value = 1.0
+value = 0.85
+fill_mode = 3
+show_percentage = false
+
+[node name="CurrentSpreadBar" type="ProgressBar" parent="MasterUI/RootContainer/GamePlayUI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -170.0
+offset_right = 66.0
+offset_bottom = 170.0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_2tf7s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eq6n1")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="DayDisplay" type="Label" parent="MasterUI/RootContainer/GamePlayUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.5
+offset_right = 21.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("10_aoun3")
+theme_override_font_sizes/font_size = 42
+text = "Day 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QTEWindow" parent="MasterUI/RootContainer/GamePlayUI" instance=ExtResource("11_dia8o")]
+visible = false
+layout_mode = 1
+
+[node name="GameOverUI" type="Control" parent="MasterUI/RootContainer" node_paths=PackedStringArray("continueRetryButton", "quitButton")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_ywh3g")
+continueRetryButton = NodePath("Menu/ContinueR")
+quitButton = NodePath("Menu/Quit")
+
+[node name="BG" type="TextureRect" parent="MasterUI/RootContainer/GameOverUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_ejl60")
+
+[node name="Menu" type="VBoxContainer" parent="MasterUI/RootContainer/GameOverUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -60.0
+offset_right = 120.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ContinueR" type="Button" parent="MasterUI/RootContainer/GameOverUI/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("10_aoun3")
+text = "Continue"
+
+[node name="Quit" type="Button" parent="MasterUI/RootContainer/GameOverUI/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("10_aoun3")
+text = "Quit"
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="QteWorldCDTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+autostart = true

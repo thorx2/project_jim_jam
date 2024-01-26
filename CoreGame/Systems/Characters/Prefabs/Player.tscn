@@ -48,12 +48,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juq1y"]
 size = Vector2(15, 11)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterVisual", "pathCheckCast")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterVisual", "movementSubsystem", "pathCheckCast")]
 y_sort_enabled = true
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_0cmmb")
 characterVisual = NodePath("Visual")
+movementSubsystem = NodePath("MovementSystem")
 pathCheckCast = [NodePath("RayCast2D")]
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
