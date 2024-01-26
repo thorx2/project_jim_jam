@@ -1,17 +1,60 @@
+using CoreGame.GameSystems.EventManagement;
 using Godot;
 using System;
 
 namespace CoreGame.GameSystems;
 
-public partial class GameManager : Node
+public partial class GameManager : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    #region Singleton Access
+    private static GameManager instance;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public static GameManager GetInstance
+    {
+        get => instance;
+    }
+    #endregion
+
+    #region Player Spawner
+
+    [Export]
+    private PackedScene playerScene;
+
+    [Export]
+    private Node2D gameplayParent;
+
+    private Character playerRef = null;
+
+    public Character GetPlayerRef
+    {
+        get => playerRef;
+    }
+
+    public Character CreatePlayerCharacter()
+    {
+
+        if (playerRef == null)
+        {
+            playerRef = playerScene.Instantiate() as Character;
+            gameplayParent.AddChild(playerRef);
+        }
+
+        return playerRef;
+    }
+    #endregion
+
+    #region Godot region
+    public override void _Ready()
+    {
+        instance = this;
+        MasterSignalBus.GetInstance.StartGame += OnStartNewGame;
+    }
+    #endregion
+
+    #region Functional
+    public void OnStartNewGame()
+    {
+        CreatePlayerCharacter();
+    }
+    #endregion
 }

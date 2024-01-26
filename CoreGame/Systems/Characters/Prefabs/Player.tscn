@@ -1,0 +1,163 @@
+[gd_scene load_steps=19 format=3 uid="uid://df0ajvwd8amho"]
+
+[ext_resource type="Script" path="res://CoreGame/Systems/Characters/Player.cs" id="1_0cmmb"]
+[ext_resource type="Texture2D" uid="uid://de4ekh8ebwprn" path="res://The Art Folder/Actual Sprites.png" id="2_0rhjt"]
+[ext_resource type="Script" path="res://CoreGame/Systems/Characters/MovementSubsystem.cs" id="3_6h2af"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcqui"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slokg"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5h41"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btgn8"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndvvf"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnp4i"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi1yf"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcp1m"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1dqe"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03n6f"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l0t8"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er603"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y07wn"]
+atlas = ExtResource("2_0rhjt")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8sqij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcqui")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slokg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5h41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slokg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btgn8")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndvvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnp4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi1yf")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcp1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1dqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03n6f")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l0t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er603")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y07wn")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juq1y"]
+size = Vector2(15, 11)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterVisual", "pathCheckCast")]
+y_sort_enabled = true
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_0cmmb")
+characterVisual = NodePath("Visual")
+pathCheckCast = NodePath("RayCast2D")
+
+[node name="Visual" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_8sqij")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -6)
+
+[node name="Character" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_juq1y")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -5)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+collision_mask = 7
+
+[node name="MovementSystem" type="Node" parent="." node_paths=PackedStringArray("parentMovingNode", "pathCheckCast")]
+script = ExtResource("3_6h2af")
+parentMovingNode = NodePath("..")
+Speed = 1.0
+pathCheckCast = NodePath("../RayCast2D")
