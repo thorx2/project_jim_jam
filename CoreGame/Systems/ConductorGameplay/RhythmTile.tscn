@@ -1,10 +1,35 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7eb423n6nwkv"]
+[gd_scene load_steps=16 format=3 uid="uid://c7eb423n6nwkv"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/ConductorGameplay/RhythmTile.cs" id="1_nvjy0"]
+[ext_resource type="Texture2D" uid="uid://bfy0qloto5qsx" path="res://Actual Art/QTE Event Icons.png" id="2_hgmth"]
 [ext_resource type="Texture2D" uid="uid://chq5ri34xcly5" path="res://The Art Folder/WASD Keys/WASD Keys.png" id="2_kxa2t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihrq"]
 size = Vector2(11.75, 12.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la04n"]
+atlas = ExtResource("2_hgmth")
+region = Rect2(105, 10, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiwj3"]
+atlas = ExtResource("2_hgmth")
+region = Rect2(48, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nten3"]
+atlas = ExtResource("2_hgmth")
+region = Rect2(56, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkdhr"]
+atlas = ExtResource("2_hgmth")
+region = Rect2(64, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftqul"]
+atlas = ExtResource("2_hgmth")
+region = Rect2(80, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c82w5"]
+atlas = ExtResource("2_hgmth")
+region = Rect2(88, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ketup"]
 atlas = ExtResource("2_kxa2t")
@@ -24,6 +49,49 @@ region = Rect2(36, 0, 10, 11)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fvpbw"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la04n")
+}],
+"loop": true,
+"name": &"Bully",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiwj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nten3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkdhr")
+}],
+"loop": true,
+"name": &"Influenza",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Professor",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Quiet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftqul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c82w5")
+}],
+"loop": true,
+"name": &"Twins",
+"speed": 1.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ketup")
@@ -60,3 +128,4 @@ shape = SubResource("RectangleShape2D_0ihrq")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fvpbw")
+animation = &"Bully"

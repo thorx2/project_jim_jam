@@ -29,7 +29,7 @@ public partial class QteWindow : Control
 		bg.Visible = false;
 	}
 
-	public void Show(ECharacterType type, float duration)
+	public void Show(ECharacterType type, float duration, NPC npc)
 	{
 		Visible = true;
 		switch (type)
@@ -42,7 +42,7 @@ public partial class QteWindow : Control
 				break;
 			case ECharacterType.EColored:
 				bg.Visible = true;
-				conductorGame.Show(type, duration);
+				conductorGame.Show(type, duration, npc);
 				conductorGame.SetProcessInput(true);
 				conductorGame.SetProcess(true);
 				break;

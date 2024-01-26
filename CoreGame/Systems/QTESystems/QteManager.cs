@@ -72,7 +72,7 @@ public partial class QteManager : Control
                         qteCoolDownTimer.Stop();
                         GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerInMiniGame;
                         canQte = false;
-                        qteWindow.Show(ECharacterType.EColored, activeNPC.GetQteDuration.Y);
+                        qteWindow.Show(ECharacterType.EColored, activeNPC.GetQteDuration.Y, activeNPC);
                     }
                     else
                     {
@@ -114,7 +114,7 @@ public partial class QteManager : Control
             activeNPC = npc;
             GameManager.GetInstance.GetPlayerRef.CurrentPlayerState = EPlayerState.EPlayerInQTE;
             canQte = false;
-            qteWindow.Show(ECharacterType.EGrey, npc.GetQteDuration.X);
+            qteWindow.Show(ECharacterType.EGrey, npc.GetQteDuration.X, npc);
         }
     }
 }
