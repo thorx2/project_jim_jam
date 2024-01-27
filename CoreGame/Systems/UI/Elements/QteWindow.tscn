@@ -137,7 +137,7 @@ show_percentage = false
 [node name="CurrentQTETimer" type="Timer" parent="GreyManGame"]
 wait_time = 5.0
 
-[node name="SpecialGame" type="Control" parent="." node_paths=PackedStringArray("dropSpawnLocation", "tileSpawnTimer", "keyTileContainer")]
+[node name="SpecialGame" type="Control" parent="." node_paths=PackedStringArray("dropSpawnLocation", "tileSpawnTimer")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -149,7 +149,6 @@ script = ExtResource("6_j3jov")
 dropSpawnLocation = [NodePath("HBoxContainer/WMaker"), NodePath("HBoxContainer/AMaker"), NodePath("HBoxContainer/SMaker"), NodePath("HBoxContainer/DMaker")]
 tileTemplate = ExtResource("7_hbo44")
 tileSpawnTimer = NodePath("TileSpawnIntreval")
-keyTileContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SpecialGame"]
 layout_mode = 1
