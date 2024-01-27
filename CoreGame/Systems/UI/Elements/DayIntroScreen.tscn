@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk2vuonlfsrwd"]
+[gd_scene load_steps=5 format=3 uid="uid://bk2vuonlfsrwd"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/DayIntroController.cs" id="1_g8dtb"]
 [ext_resource type="Theme" uid="uid://cv6ctxi60ly43" path="res://CoreGame/Systems/UI/BaseGameTheme.tres" id="2_6wsg2"]
+
+[sub_resource type="Gradient" id="Gradient_7ujae"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yfwwu"]
+gradient = SubResource("Gradient_7ujae")
 
 [node name="DayIntroScreen" type="Control" node_paths=PackedStringArray("displayTimeoutTimer", "dayText", "randomDayText")]
 layout_mode = 3
@@ -14,6 +20,16 @@ script = ExtResource("1_g8dtb")
 displayTimeoutTimer = NodePath("DisplayTimeout")
 dayText = NodePath("DayText")
 randomDayText = NodePath("MessageText")
+randomListOfMessages = PackedStringArray("Be a friend, not a gossip", "Words can build bridges or walls", "Say good things; it\'s a better place when we lift each other up", "Life is like a puzzle; gossiping just messes up the pieces", "Kind words matter; let\'s create a positive story together", "Build strong friendships; rumors don\'t make good memories")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_yfwwu")
 
 [node name="DisplayTimeout" type="Timer" parent="."]
 wait_time = 3.5

@@ -27,7 +27,8 @@ public partial class DayIntroController : Control
     public void ShowDayTimer()
     {
         displayTimeoutTimer.Start();
-        dayText.Text = $"Day {GameRuntimeParameters.GameDay}";
+        int x = GameRuntimeParameters.GameDay == 0 ? GameRuntimeParameters.GameDay + 1 : GameRuntimeParameters.GameDay;
+        dayText.Text = $"Day {x}";
         randomDayText.Text = randomListOfMessages[rnd.Next(0, randomListOfMessages.Length)];
     }
 
