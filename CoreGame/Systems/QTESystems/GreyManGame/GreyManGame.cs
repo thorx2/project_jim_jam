@@ -82,7 +82,7 @@ public partial class GreyManGame : Control
     {
         Visible = true;
         qteTimer.Stop();
-        qteTimer.WaitTime = duration;
+        qteTimer.WaitTime = duration <= 0 ? 1.0 : duration;
         qteTimer.Start();
         lastCharacterType = type;
         randomGameKey = rnd.Next(0, 3);
