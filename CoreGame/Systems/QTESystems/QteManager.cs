@@ -29,12 +29,23 @@ public partial class QteManager : Control
 
         MasterSignalBus.GetInstance.StartGameEvent += OnNewGameStart;
 
+        MasterSignalBus.GetInstance.OnDayOver += OnDayOver;
+
         qteCoolDownTimer.OneShot = true;
 
         qteCoolDownTimer.Timeout += OnQteTimerTimeout;
 
         qteCoolDownTimer.Start();
     }
+
+    private void OnDayOver(bool obj)
+    {
+        if (!obj)
+        {
+            currentProgressBar.Value = 0;
+        }
+    }
+
 
     private void OnQteTimerTimeout()
     {

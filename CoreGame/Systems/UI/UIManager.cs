@@ -19,6 +19,9 @@ public partial class UIManager : Control
 	[Export]
 	private GameOverPanel gameOverPanel;
 
+	[Export]
+	private DayIntroController dayController;
+
 	private int lastShownDay = -1;
 
 	public override void _Ready()
@@ -27,12 +30,32 @@ public partial class UIManager : Control
 
 		MasterSignalBus.GetInstance.OnDayOver += OnDayOver;
 
+		MasterSignalBus.GetInstance.LoadMapEvent += OnLoadMap;
+
+		MasterSignalBus.GetInstance.StartGameEvent += StartGameEvent;
+
 		mainMenu.Visible = true;
 		gameplayUIRef.Visible = false;
 		gameOverPanel.Visible = false;
+		dayController.Visible = false;
 		questLabel.Text = "";
 	}
 
+	private void StartGameEvent()
+	{
+		dayController.Visible = true;
+		dayController.ShowDayTimer();
+	}
+
+
+	private void OnLoadMap(int obj)
+	{
+		if (GameRuntimeParameters.GameDay < 5)
+		{
+			dayController.Visible = true;
+			dayController.ShowDayTimer();
+		}
+	}
 
 	public override void _Process(double delta)
 	{

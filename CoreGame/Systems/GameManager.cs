@@ -89,8 +89,6 @@ public partial class GameManager : Node2D
 		get => activeObjective;
 	}
 
-	private Random rnd = new();
-
 	public void OnDayCompleted(bool isWin)
 	{
 		if (isWin)
@@ -105,11 +103,14 @@ public partial class GameManager : Node2D
 
 	public void StartNextDay()
 	{
-		GameRuntimeParameters.GossipSpread = 0;
-		GameRuntimeParameters.ColorFailSpread = coloredCharacterFailedSpreadValue;
-		GameRuntimeParameters.GreyFailSpread = greyCharacterFailSpreadValue;
-		GameRuntimeParameters.MaxTolerableSpread = perDaySpreadTolerance[GameRuntimeParameters.GameDay];
-		activeObjective = possibleGameObjectives[GameRuntimeParameters.GameDay];
+		if (GameRuntimeParameters.GameDay < 5)
+		{
+			GameRuntimeParameters.GossipSpread = 0;
+			GameRuntimeParameters.ColorFailSpread = coloredCharacterFailedSpreadValue;
+			GameRuntimeParameters.GreyFailSpread = greyCharacterFailSpreadValue;
+			GameRuntimeParameters.MaxTolerableSpread = perDaySpreadTolerance[GameRuntimeParameters.GameDay];
+			activeObjective = possibleGameObjectives[GameRuntimeParameters.GameDay];
+		}
 		GameRuntimeParameters.GameDay++;
 	}
 

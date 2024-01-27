@@ -17,6 +17,7 @@
 [ext_resource type="Theme" uid="uid://cv6ctxi60ly43" path="res://CoreGame/Systems/UI/BaseGameTheme.tres" id="10_aoun3"]
 [ext_resource type="PackedScene" uid="uid://dlhhwoh8rq7fs" path="res://CoreGame/Systems/UI/Elements/QteWindow.tscn" id="11_dia8o"]
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/GameOverPanel.cs" id="12_ywh3g"]
+[ext_resource type="PackedScene" uid="uid://bk2vuonlfsrwd" path="res://CoreGame/Systems/UI/Elements/DayIntroScreen.tscn" id="16_r6ppc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u7uq"]
 bg_color = Color(0.709804, 0.34902, 0.298039, 1)
@@ -38,6 +39,8 @@ playerScene = ExtResource("2_w5l5r")
 gameplayParent = NodePath("GameSVP/GameVP/YSortEnabler")
 possibleGameObjectives = Array[Resource]([ExtResource("5_iwsn2"), ExtResource("3_lpay4"), ExtResource("3_remmx"), ExtResource("3_rbgrk"), ExtResource("4_jinu3")])
 perDaySpreadTolerance = PackedFloat32Array(0.9, 0.7, 0.6, 0.5, 0.4)
+greyCharacterFailSpreadValue = 0.2
+coloredCharacterFailedSpreadValue = 0.4
 
 [node name="PathFinder_Deprecated" type="Node" parent="."]
 script = ExtResource("3_0fuy3")
@@ -69,7 +72,7 @@ y_sort_enabled = true
 
 [node name="MasterUI" type="CanvasLayer" parent="."]
 
-[node name="RootContainer" type="Control" parent="MasterUI" node_paths=PackedStringArray("dayLabel", "questLabel", "mainMenu", "gameplayUIRef", "gameOverPanel")]
+[node name="RootContainer" type="Control" parent="MasterUI" node_paths=PackedStringArray("dayLabel", "questLabel", "mainMenu", "gameplayUIRef", "gameOverPanel", "dayController")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,6 +85,7 @@ questLabel = NodePath("QuestLabel")
 mainMenu = NodePath("MainMenu")
 gameplayUIRef = NodePath("GamePlayUI")
 gameOverPanel = NodePath("GameOverUI")
+dayController = NodePath("DayIntroScreen")
 
 [node name="MainMenu" parent="MasterUI/RootContainer" instance=ExtResource("8_231jm")]
 layout_mode = 1
@@ -109,6 +113,7 @@ offset_top = -170.0
 offset_right = 66.0
 offset_bottom = 170.0
 grow_vertical = 2
+theme = ExtResource("10_aoun3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5u7uq")
 max_value = 1.0
 value = 0.85
@@ -208,6 +213,10 @@ theme = ExtResource("10_aoun3")
 theme_override_font_sizes/font_size = 24
 autowrap_mode = 3
 text_overrun_behavior = 3
+
+[node name="DayIntroScreen" parent="MasterUI/RootContainer" instance=ExtResource("16_r6ppc")]
+visible = false
+layout_mode = 1
 
 [node name="Timers" type="Node" parent="."]
 
