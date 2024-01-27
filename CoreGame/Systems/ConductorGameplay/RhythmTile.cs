@@ -34,6 +34,13 @@ public partial class RhythmTile : Area2D
     private void OnAShapedExited(Rid areaRid, Area2D area, long areaShapeIndex, long localShapeIndex)
     {
         sensor = false;
+        InputTile inputTile = area as InputTile;
+
+        if (Input.IsKeyPressed(inputTile.key))
+        {
+            processDone = true;
+            TileInteractionHappened?.Invoke(true, this);
+        }
     }
 
     private void OnAShapedEntered(Rid areaRid, Area2D area, long areaShapeIndex, long localShapeIndex)
@@ -41,56 +48,56 @@ public partial class RhythmTile : Area2D
         sensor = true;
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (sensor && @event is InputEventKey && @event.IsPressed())
-        {
-            var g = @event as InputEventKey;
-            switch (g.Keycode)
-            {
-                case Key.W:
-                    if (tileKey == 0)
-                    {
-                        if (!processDone)
-                        {
-                            processDone = true;
-                            TileInteractionHappened?.Invoke(true, this);
-                        }
-                    }
-                    break;
-                case Key.A:
-                    if (tileKey == 1)
-                    {
-                        if (!processDone)
-                        {
-                            TileInteractionHappened?.Invoke(true, this);
-                            processDone = true;
-                        }
-                    }
-                    break;
-                case Key.S:
-                    if (tileKey == 2)
-                    {
-                        if (!processDone)
-                        {
-                            TileInteractionHappened?.Invoke(true, this);
-                            processDone = true;
-                        }
-                    }
-                    break;
-                case Key.D:
-                    if (tileKey == 3)
-                    {
-                        if (!processDone)
-                        {
-                            TileInteractionHappened?.Invoke(true, this);
-                            processDone = true;
-                        }
-                    }
-                    break;
-            }
-        }
-    }
+    // public override void _Input(InputEvent @event)
+    // {
+        // if (sensor && @event is InputEventKey && @event.IsPressed())
+        // {
+        //     var g = @event as InputEventKey;
+        //     switch (g.Keycode)
+        //     {
+        //         case Key.W:
+        //             if (tileKey == 0)
+        //             {
+        //                 if (!processDone)
+        //                 {
+        //                     processDone = true;
+        //                     TileInteractionHappened?.Invoke(true, this);
+        //                 }
+        //             }
+        //             break;
+        //         case Key.A:
+        //             if (tileKey == 1)
+        //             {
+        //                 if (!processDone)
+        //                 {
+        //                     TileInteractionHappened?.Invoke(true, this);
+        //                     processDone = true;
+        //                 }
+        //             }
+        //             break;
+        //         case Key.S:
+        //             if (tileKey == 2)
+        //             {
+        //                 if (!processDone)
+        //                 {
+        //                     TileInteractionHappened?.Invoke(true, this);
+        //                     processDone = true;
+        //                 }
+        //             }
+        //             break;
+        //         case Key.D:
+        //             if (tileKey == 3)
+        //             {
+        //                 if (!processDone)
+        //                 {
+        //                     TileInteractionHappened?.Invoke(true, this);
+        //                     processDone = true;
+        //                 }
+        //             }
+        //             break;
+        //     }
+        // }
+    // }
 
     private void OnScreenExit()
     {

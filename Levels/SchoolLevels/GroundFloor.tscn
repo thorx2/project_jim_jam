@@ -45,13 +45,13 @@ characterType = 1
 
 [node name="NPC_2" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(68, 79)
-qteDuration = Vector2(1, 20)
-specialNpcStyle = 1
+qteDuration = Vector2(1, 5)
+specialNpcStyle = 4
 
 [node name="NPC_3" parent="." instance=ExtResource("4_18fup")]
 position = Vector2(169, 125)
-qteDuration = Vector2(10, 0)
-characterType = 1
+qteDuration = Vector2(1, 3)
+specialNpcStyle = 2
 
 [node name="DayWinTile" parent="." instance=ExtResource("4_785ks")]
 position = Vector2(104, 54)
