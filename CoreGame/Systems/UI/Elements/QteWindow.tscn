@@ -169,7 +169,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/W"]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 collision_layer = 64
 collision_mask = 32
 
@@ -186,7 +186,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/A"]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 collision_layer = 64
 collision_mask = 32
 
@@ -203,7 +203,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/S"]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 collision_layer = 64
 collision_mask = 32
 
@@ -220,7 +220,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Area2D" type="Area2D" parent="SpecialGame/HBoxContainer/D"]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 collision_layer = 64
 collision_mask = 32
 
