@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7eb423n6nwkv"]
+[gd_scene load_steps=18 format=3 uid="uid://c7eb423n6nwkv"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/ConductorGameplay/RhythmTile.cs" id="1_nvjy0"]
 [ext_resource type="Texture2D" uid="uid://bfy0qloto5qsx" path="res://Actual Art/QTE Event Icons.png" id="2_hgmth"]
@@ -26,6 +26,10 @@ region = Rect2(64, 16, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rcd1"]
 atlas = ExtResource("2_hgmth")
 region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvd4b"]
+atlas = ExtResource("2_hgmth")
+region = Rect2(24, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ftqul"]
 atlas = ExtResource("2_hgmth")
@@ -88,7 +92,10 @@ animations = [{
 "name": &"Professor",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvd4b")
+}],
 "loop": true,
 "name": &"Quiet",
 "speed": 5.0
@@ -140,4 +147,4 @@ shape = SubResource("RectangleShape2D_0ihrq")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fvpbw")
-animation = &"Invisible"
+animation = &"Quiet"

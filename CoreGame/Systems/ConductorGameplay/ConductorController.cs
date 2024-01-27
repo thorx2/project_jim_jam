@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CoreGame.GameSystems.EventManagement;
 using Godot;
 
@@ -32,6 +33,12 @@ public partial class ConductorController : Control
 
     private NPC activeNPC;
 
+    [Export]
+    private HBoxContainer keyTileContainer;
+    private Node keyTileTempParent;
+
+    private List<Node> keyTileNodes = new List<Node>();
+
     public override void _Ready()
     {
         tileSpawnTimer.Stop();
@@ -50,6 +57,9 @@ public partial class ConductorController : Control
         }
         SetProcess(false);
         SetProcessInput(false);
+
+        keyTileNodes = keyTileContainer.GetChildren().ToList();
+        keyTileTempParent = keyTileContainer.GetParent();
     }
 
     private void SpawnRandomTile()
@@ -140,6 +150,52 @@ public partial class ConductorController : Control
         isRunningGame = true;
         currentRoundDuration = 0;
         activeNPC = npc;
+
+        if (activeNPC.GetSpecialNPCStyle == ESpecialNPC.EQuiet)
+        {
+            // Reparent the keys after shuffling for the quiet kid
+            Node[] shuffledKeys = ShuffledList(keyTileNodes);
+
+            for (int i = 0; i < shuffledKeys.Length; i++)
+            {
+                shuffledKeys[i].Reparent(keyTileTempParent, true);
+            }
+
+            for (int i = 0; i < shuffledKeys.Length; i++)
+            {
+                shuffledKeys[i].Reparent(keyTileContainer, true);
+            }
+        }
+        else
+        {
+            // Reparent the keys normally for the others
+            for (int i = 0; i < keyTileNodes.Count; i++)
+            {
+                keyTileNodes[i].Reparent(keyTileTempParent, true);
+            }
+
+            for (int i = 0; i < keyTileNodes.Count; i++)
+            {
+                keyTileNodes[i].Reparent(keyTileContainer, true);
+            }
+        }
+    }
+
+    // GC happens but who cares!
+    private Node[] ShuffledList(List<Node> nodes)
+    {
+        Node[] arr = new Node[nodes.Count];
+        nodes.CopyTo(arr);
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            int swapIndex = rnd.Next(0, arr.Length);
+            Node temp = arr[i];
+            arr[i] = arr[swapIndex];
+            arr[swapIndex] = temp;
+        }
+
+        return arr;
     }
 
     private string GetAnimationForActiveNPC()
