@@ -16,7 +16,7 @@ mono_crash.*.json
 # Gradle files
 .gradle/
 build/
-
+builds/
 # Local configuration file (sdk path, etc)
 local.properties
 

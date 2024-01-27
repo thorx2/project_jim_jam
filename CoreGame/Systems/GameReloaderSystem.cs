@@ -11,6 +11,7 @@ public partial class GameReloaderSystem : Node2D
 
 	public override void _Ready()
 	{
+		DisplayServer.WindowSetTitle("Hush Hush High");
 		instantiatedGame = game.Instantiate() as Node2D;
 		MasterSignalBus.GetInstance.GameHardReset += OnGameHardReset;
 		AddChild(instantiatedGame);
