@@ -20,7 +20,7 @@ script = ExtResource("1_g8dtb")
 displayTimeoutTimer = NodePath("DisplayTimeout")
 dayText = NodePath("DayText")
 randomDayText = NodePath("MessageText")
-randomListOfMessages = PackedStringArray("Be a friend, not a gossip", "Words can build bridges or walls", "Say good things; it\'s a better place when we lift each other up", "Life is like a puzzle; gossiping just messes up the pieces", "Kind words matter; let\'s create a positive story together", "Build strong friendships; rumors don\'t make good memories")
+randomListOfMessages = PackedStringArray("Hey gurl...did you hear the about Jessica? Seems like her bestfriend Macy, hooked up with Jacob! Jessica\'s Ex boyfriend! I know you love gossiping, but make sure no one gets to know. Especially Jessica cause she will spread the world like wild fire cause she is The INFLUENCER!", "Gurll!! I Just got to know David wears hello kitty underpants!! Hahaha, we will get in so much trouble if anyone gets to know...especially David, he is such a BULLY!", "Bruhh, Miss QUIET ONE, Emily, apparently keeps a secret journal which she writes religiously in, all about the people of HH High, even the teachers. But she shouldnt get to know that we know!", "You need to stop doing what you are doing and listen! Guess who has a crush on you??... Its your CRUSH TWINS! Omg, I cant believe this...I am starting to plan wedding invitations...but they dont know that you know that they have a crush on you too.. so keep shut!", "I have the biggest news! Guess who hooked up with Mrs Brown, our gym teacher!! You wont believe it but is Mr Martin, the history PROFESSOR!! If you spill even one single word about this we are dead!")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -32,7 +32,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_yfwwu")
 
 [node name="DisplayTimeout" type="Timer" parent="."]
-wait_time = 3.5
+wait_time = 15.0
 
 [node name="DayText" type="Label" parent="."]
 layout_mode = 1
@@ -55,15 +55,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.0
-offset_top = 104.0
-offset_right = 340.135
-offset_bottom = 361.0
+offset_left = -330.0
+offset_top = -211.0
+offset_right = 328.0
+offset_bottom = 377.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -0.600347
 theme = ExtResource("2_6wsg2")
-theme_override_font_sizes/font_size = 51
+theme_override_font_sizes/font_size = 40
 text = "This should be an exceptionally long fancy message without"
 horizontal_alignment = 1
 vertical_alignment = 1
