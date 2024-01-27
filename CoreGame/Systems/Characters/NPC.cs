@@ -20,6 +20,9 @@ public partial class NPC : Character
 	[Export]
 	private Vector2 qteDuration;
 
+	[Export]
+	private Sprite2D corruptedIndicator;
+
 
 	[ExportCategory("Special Characters Data")]
 	[Export]
@@ -59,6 +62,8 @@ public partial class NPC : Character
 	private void OnGossipHitCharacter(Area2D area)
 	{
 		characterCorrupted = true;
+
+		corruptedIndicator.Visible = true;
 
 		foreach (var ray in pathCheckCast)
 		{
@@ -110,6 +115,7 @@ public partial class NPC : Character
 	internal void TriggerGossipBurst()
 	{
 		characterCorrupted = true;
+		corruptedIndicator.Visible = true;
 		foreach (var ray in pathCheckCast)
 		{
 			ray.Visible = false;

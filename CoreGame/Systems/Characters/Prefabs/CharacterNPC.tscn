@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://np778k3nxldg"]
+[gd_scene load_steps=15 format=3 uid="uid://np778k3nxldg"]
 
 [ext_resource type="Texture2D" uid="uid://ctxporibj3irj" path="res://Actual Art/Other Characters.png" id="2_63v6a"]
+[ext_resource type="Texture2D" uid="uid://bfy0qloto5qsx" path="res://Actual Art/QTE Event Icons.png" id="3_1q612"]
 [ext_resource type="Script" path="res://CoreGame/Systems/Characters/NPC.cs" id="3_pfqeo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlkod"]
@@ -72,7 +73,11 @@ size = Vector2(15, 11)
 [sub_resource type="CircleShape2D" id="CircleShape2D_n8xmg"]
 resource_local_to_scene = true
 
-[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("visualSprite", "gossipBubble", "gossipSpreadCircle", "pathCheckCast")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_24hkl"]
+atlas = ExtResource("3_1q612")
+region = Rect2(10, 32, 12, 8)
+
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("visualSprite", "gossipBubble", "gossipSpreadCircle", "corruptedIndicator", "pathCheckCast")]
 y_sort_enabled = true
 collision_mask = 15
 motion_mode = 1
@@ -81,6 +86,7 @@ visualSprite = NodePath("Visual")
 gossipBubble = NodePath("Area2D")
 gossipSpreadCircle = NodePath("Area2D/CollisionShape2D")
 gossipBurstRadius = 40.0
+corruptedIndicator = NodePath("SpeechBubble")
 characterType = 2
 pathCheckCast = [NodePath("RayCast2D"), NodePath("RayCast2D_2"), NodePath("RayCast2D_3"), NodePath("RayCast2D_4")]
 
@@ -116,3 +122,5 @@ shape = SubResource("CircleShape2D_n8xmg")
 
 [node name="SpeechBubble" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(-10, -22)
+texture = SubResource("AtlasTexture_24hkl")
