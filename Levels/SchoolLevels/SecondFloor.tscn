@@ -10,7 +10,7 @@ playerSpawnPoint = NodePath("PlayerSpawnPoint")
 levelMapReference = NodePath("TileMap")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(447, 1083)
+position = Vector2(447, 1159)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_m7p4q")
@@ -268,7 +268,7 @@ position = Vector2(412, 1026)
 characterType = 1
 
 [node name="NPC_60" parent="." instance=ExtResource("4_udkk1")]
-position = Vector2(476, 1128)
+position = Vector2(488, 1067)
 characterType = 1
 
 [node name="NPC_61" parent="." instance=ExtResource("4_udkk1")]
@@ -283,16 +283,8 @@ specialNpcStyle = 3
 position = Vector2(552, 747)
 specialNpcStyle = 4
 
-[node name="NPC_64" parent="." instance=ExtResource("4_udkk1")]
-position = Vector2(413, 1171)
-characterType = 1
-
 [node name="NPC_65" parent="." instance=ExtResource("4_udkk1")]
-position = Vector2(397, 1155)
-characterType = 1
-
-[node name="NPC_66" parent="." instance=ExtResource("4_udkk1")]
-position = Vector2(463, 1186)
+position = Vector2(397, 1128)
 characterType = 1
 
 [node name="NPC_67" parent="." instance=ExtResource("4_udkk1")]
