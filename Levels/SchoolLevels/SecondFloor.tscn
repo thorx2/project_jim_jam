@@ -33,396 +33,495 @@ layer_6/tile_data = PackedInt32Array(2883593, 262144, 1, 2949129, 262144, 2, 288
 
 [node name="NPC" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(402, 936)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_2" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(408, 886)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_3" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(572, 880)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_4" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(603, 887)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_5" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(690, 884)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_6" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(670, 823)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_7" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(655, 801)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_8" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(658, 750)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_9" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(668, 767)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_10" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(625, 611)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_11" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(657, 665)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_12" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(650, 686)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_13" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(627, 536)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_14" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(639, 508)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_15" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(680, 480)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_16" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(673, 571)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_17" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(667, 450)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_18" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(623, 419)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_19" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(665, 326)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_20" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(650, 314)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_21" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(639, 221)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_22" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(527, 223)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_23" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(505, 231)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_24" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(487, 259)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_25" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(662, 254)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_26" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(591, 265)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_27" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(620, 848)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_28" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(583, 99)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_29" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(619, 41)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_30" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(603, 47)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_31" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(616, 86)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_32" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(536, 137)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_33" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(620, 352)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_34" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(663, 381)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_35" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(619, 407)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_36" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(615, 730)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_37" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(661, 708)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_38" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(713, 895)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_39" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(744, 929)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_40" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(811, 881)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_41" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(791, 890)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_42" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(846, 885)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_43" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(493, 960)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_44" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(379, 927)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_45" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(462, 903)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_46" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(534, 917)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_47" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(497, 893)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_48" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(627, 891)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_49" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(672, 618)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_50" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(681, 603)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_51" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(665, 466)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_52" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(611, 217)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_53" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(678, 237)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_54" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(528, 151)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_55" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(603, 98)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_56" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(547, 61)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_57" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(533, 103)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_58" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(399, 1012)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_59" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(412, 1026)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_60" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(488, 1067)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_61" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(496, 1053)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_62" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(730, 817)
+qteDuration = Vector2(4, 0)
 specialNpcStyle = 3
 
 [node name="NPC_63" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(552, 747)
+qteDuration = Vector2(4, 0)
 specialNpcStyle = 4
 
 [node name="NPC_65" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(397, 1128)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_67" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(571, 824)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_68" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(790, 60)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_69" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(865, 113)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_70" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(810, 112)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_71" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(799, 221)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_72" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(710, 223)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_73" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(722, 205)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_74" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(714, 232)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_75" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(808, 246)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_76" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(839, 244)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_77" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(873, 319)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_78" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(861, 304)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_79" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(775, 326)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_80" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(805, 366)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_81" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(709, 432)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_82" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(723, 448)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_83" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(823, 260)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_84" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(796, 322)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_85" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(854, 437)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_86" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(877, 431)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_87" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(859, 483)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_88" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(840, 459)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_89" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(316, 902)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_90" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(344, 876)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_91" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(494, 238)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_92" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(464, 245)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_93" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(457, 253)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_94" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(468, 268)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_95" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(486, 213)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_96" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(461, 225)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_97" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(525, 253)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_98" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(501, 244)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_99" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(475, 234)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="NPC_100" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(662, 227)
+qteDuration = Vector2(4, 0)
 characterType = 1
 
 [node name="Boss" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(684, 102)
+qteDuration = Vector2(0, 2)
 specialNpcStyle = 1
