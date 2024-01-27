@@ -20,6 +20,8 @@ public partial class RhythmTile : Area2D
 
     private bool processDone;
 
+    public bool canReduceLives;
+
     public override void _Ready()
     {
         sensor = false;
@@ -110,12 +112,13 @@ public partial class RhythmTile : Area2D
         }
     }
 
-    public void InitTileMovement(Vector2 pos, int key, string animation)
+    public void InitTileMovement(Vector2 pos, int key, string animation, bool reducesLives)
     {
         processDone = false;
         GlobalPosition = pos;
         Visible = true;
         tileKey = key;
         visualSprite.Play(animation);
+        canReduceLives = reducesLives;
     }
 }

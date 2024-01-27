@@ -111,7 +111,7 @@ public partial class GameManager : Node2D
 			GameRuntimeParameters.ColorFailSpread = coloredCharacterFailedSpreadValue;
 			GameRuntimeParameters.GreyFailSpread = greyCharacterFailSpreadValue;
 			GameRuntimeParameters.MaxTolerableSpread = perDaySpreadTolerance[GameRuntimeParameters.GameDay];
-			activeObjective = possibleGameObjectives[rnd.Next(0, possibleGameObjectives.Length)];
+			activeObjective = possibleGameObjectives[GameRuntimeParameters.GameDay];
 		}
 		GameRuntimeParameters.GameDay++;
 	}

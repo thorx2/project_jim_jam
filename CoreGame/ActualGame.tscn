@@ -1,9 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://dkwerl2agket4"]
+[gd_scene load_steps=23 format=3 uid="uid://dkwerl2agket4"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_t7rrp"]
 [ext_resource type="PackedScene" uid="uid://df0ajvwd8amho" path="res://CoreGame/Systems/Characters/Prefabs/Player.tscn" id="2_w5l5r"]
 [ext_resource type="Script" path="res://CoreGame/Systems/TilemapPathSystems/PathGenerator.cs" id="3_0fuy3"]
 [ext_resource type="Resource" uid="uid://b7atuy11dyc11" path="res://CoreGame/Systems/Objectives/SampleObjectives/ObjectivePopular.tres" id="3_lpay4"]
+[ext_resource type="Resource" uid="uid://vhmof2n3vl61" path="res://CoreGame/Systems/Objectives/SampleObjectives/ObjectiveTwins.tres" id="3_rbgrk"]
+[ext_resource type="Resource" uid="uid://bs6bpblmtj0fb" path="res://CoreGame/Systems/Objectives/SampleObjectives/ObjectiveBully.tres" id="3_remmx"]
 [ext_resource type="Resource" uid="uid://6txbwe5yqerd" path="res://CoreGame/Systems/Objectives/SampleObjectives/ObjectiveProf.tres" id="4_jinu3"]
 [ext_resource type="Script" path="res://CoreGame/Systems/UI/GameVPScaler.cs" id="4_vbkws"]
 [ext_resource type="Resource" uid="uid://vfkcsc0hxfdg" path="res://CoreGame/Systems/Objectives/SampleObjectives/ObjectiveQuiet.tres" id="5_iwsn2"]
@@ -35,7 +37,7 @@ gradient = SubResource("Gradient_t4dho")
 script = ExtResource("1_t7rrp")
 playerScene = ExtResource("2_w5l5r")
 gameplayParent = NodePath("GameSVP/GameVP/YSortEnabler")
-possibleGameObjectives = Array[Resource]([ExtResource("3_lpay4"), ExtResource("4_jinu3"), ExtResource("5_iwsn2")])
+possibleGameObjectives = Array[Resource]([ExtResource("3_lpay4"), ExtResource("3_remmx"), ExtResource("5_iwsn2"), ExtResource("3_rbgrk"), ExtResource("4_jinu3")])
 perDaySpreadTolerance = PackedFloat32Array(0.9, 0.7, 0.6, 0.5, 0.4)
 greyCharacterFailSpreadValue = 0.2
 coloredCharacterFailedSpreadValue = 0.4
