@@ -411,10 +411,6 @@ characterType = 1
 position = Vector2(525, 253)
 characterType = 1
 
-[node name="Boss" parent="." instance=ExtResource("4_udkk1")]
-position = Vector2(684, 102)
-specialNpcStyle = 1
-
 [node name="NPC_98" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(501, 244)
 characterType = 1
@@ -425,3 +421,8 @@ characterType = 1
 
 [node name="NPC_100" parent="." instance=ExtResource("4_udkk1")]
 position = Vector2(662, 227)
+characterType = 1
+
+[node name="Boss" parent="." instance=ExtResource("4_udkk1")]
+position = Vector2(684, 102)
+specialNpcStyle = 1
