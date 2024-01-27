@@ -145,7 +145,7 @@ qteDuration = Vector2(3, 0)
 characterType = 1
 
 [node name="NPC_23" parent="." instance=ExtResource("4_afahn")]
-position = Vector2(509, 265)
+position = Vector2(492, 241)
 qteDuration = Vector2(3, 0)
 characterType = 1
 
@@ -165,7 +165,7 @@ qteDuration = Vector2(3, 0)
 characterType = 1
 
 [node name="NPC_27" parent="." instance=ExtResource("4_afahn")]
-position = Vector2(584, 234)
+position = Vector2(584, 222)
 qteDuration = Vector2(3, 0)
 characterType = 1
 
@@ -399,18 +399,8 @@ position = Vector2(540, 269)
 qteDuration = Vector2(3, 0)
 characterType = 1
 
-[node name="NPC_78" parent="." instance=ExtResource("4_afahn")]
-position = Vector2(475, 232)
-qteDuration = Vector2(3, 0)
-characterType = 1
-
-[node name="NPC_79" parent="." instance=ExtResource("4_afahn")]
-position = Vector2(457, 256)
-qteDuration = Vector2(3, 0)
-characterType = 1
-
 [node name="NPC_80" parent="." instance=ExtResource("4_afahn")]
-position = Vector2(414, 197)
+position = Vector2(390, 266)
 qteDuration = Vector2(3, 0)
 characterType = 1
 
@@ -419,15 +409,15 @@ position = Vector2(481, 150)
 qteDuration = Vector2(3, 0)
 characterType = 1
 
-[node name="NPC_82" parent="." instance=ExtResource("4_afahn")]
-position = Vector2(516, 223)
-qteDuration = Vector2(3, 0)
-characterType = 1
-
 [node name="NPC_83" parent="." instance=ExtResource("4_afahn")]
 position = Vector2(574, 269)
 qteDuration = Vector2(3, 0)
 characterType = 1
+
+[node name="Boss" parent="." instance=ExtResource("4_afahn")]
+position = Vector2(631, 251)
+qteDuration = Vector2(0, 3)
+specialNpcStyle = 4
 
 [node name="NPC_68" parent="." instance=ExtResource("4_afahn")]
 position = Vector2(404, 918)
@@ -443,8 +433,3 @@ characterType = 1
 position = Vector2(413, 961)
 qteDuration = Vector2(3, 0)
 characterType = 1
-
-[node name="Boss" parent="." instance=ExtResource("4_afahn")]
-position = Vector2(631, 251)
-qteDuration = Vector2(0, 3)
-specialNpcStyle = 4
