@@ -13,7 +13,7 @@ public partial class MovementSubsystem : Node
 	private AnimatedSprite2D animatedSprite2D;
 
 	private bool isMoving = false;
-	
+
 	private bool wasMovingVertical = false;
 	private Vector2 direction;
 
@@ -30,6 +30,11 @@ public partial class MovementSubsystem : Node
 		{
 			PlayerMovement();
 		}
+		else
+		{
+			animatedSprite2D.SpeedScale = 0;
+			animatedSprite2D.Frame = 0;
+		}
 	}
 
 	private void PlayerMovement()
@@ -44,7 +49,7 @@ public partial class MovementSubsystem : Node
 				wasMovingVertical = true;
 
 			direction = inputDirection;
-			
+
 			if (direction.X != 0f && direction.Y != 0f)
 			{
 				if (wasMovingVertical)
@@ -56,6 +61,7 @@ public partial class MovementSubsystem : Node
 
 		if (direction != Vector2.Zero && !isMoving && PathGenerator.GetPathGeneratorInstance != null)
 		{
+			animatedSprite2D.SpeedScale = 1;
 			if (tileSize < 0)
 			{
 				tileSize = (int)PathGenerator.GetPathGeneratorInstance.GetNavCellSize().X;
@@ -71,6 +77,19 @@ public partial class MovementSubsystem : Node
 				targetPosition = PathGenerator.GetPathGeneratorInstance.GetPointPositionCentered(targetTile);
 				isMoving = (parentMovingNode.Position - targetPosition).LengthSquared() > 0.1f;
 			}
+			if (direction.X != 0)
+			{
+				animatedSprite2D.Play(direction.X < 0 ? "walk_left" : "walk_right");
+			}
+			else if (direction.Y != 0)
+			{
+				animatedSprite2D.Play(direction.Y < 0 ? "walk_up" : "walk_down");
+			}
+		}
+		else if (direction == Vector2.Zero)
+		{
+			animatedSprite2D.SpeedScale = 0;
+			animatedSprite2D.Frame = 0;
 		}
 	}
 
