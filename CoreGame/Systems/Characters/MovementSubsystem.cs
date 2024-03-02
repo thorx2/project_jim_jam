@@ -30,11 +30,6 @@ public partial class MovementSubsystem : Node
 		{
 			PlayerMovement();
 		}
-		else
-		{
-			animatedSprite2D.SpeedScale = 0;
-			animatedSprite2D.Frame = 0;
-		}
 	}
 
 	private void PlayerMovement()
@@ -61,52 +56,63 @@ public partial class MovementSubsystem : Node
 
 		if (direction != Vector2.Zero && !isMoving && PathGenerator.GetPathGeneratorInstance != null)
 		{
-			animatedSprite2D.SpeedScale = 1;
 			if (tileSize < 0)
 			{
 				tileSize = (int)PathGenerator.GetPathGeneratorInstance.GetNavCellSize().X;
 			}
 
-			pathCheckCast.TargetPosition = direction * tileSize;
-			pathCheckCast.ForceRaycastUpdate();
 			var currentCell = PathGenerator.GetPathGeneratorInstance.GetMapPointForPosition(parentMovingNode.GlobalPosition);
 			var targetTile = new Vector2I((int)(currentCell.X + direction.X), (int)(currentCell.Y + direction.Y));
 			var tileData = PathGenerator.GetPathGeneratorInstance.GetTileData(0, targetTile);
+
+			pathCheckCast.TargetPosition = direction * tileSize;
+			pathCheckCast.ForceRaycastUpdate();
+
 			if (tileData != null && tileData.GetCustomData("Walkable").AsBool() && !pathCheckCast.IsColliding())
 			{
 				targetPosition = PathGenerator.GetPathGeneratorInstance.GetPointPositionCentered(targetTile);
-				isMoving = (parentMovingNode.Position - targetPosition).LengthSquared() > 0.1f;
+				isMoving = true;
+
+				if (direction.X != 0)
+				{
+					animatedSprite2D.Play(direction.X < 0 ? "walk_left" : "walk_right");
+					animatedSprite2D.SpeedScale = 1;
+				}
+				else if (direction.Y != 0)
+				{
+					animatedSprite2D.Play(direction.Y < 0 ? "walk_up" : "walk_down");
+					animatedSprite2D.SpeedScale = 1;
+				}
 			}
-			if (direction.X != 0)
-			{
-				animatedSprite2D.Play(direction.X < 0 ? "walk_left" : "walk_right");
-			}
-			else if (direction.Y != 0)
-			{
-				animatedSprite2D.Play(direction.Y < 0 ? "walk_up" : "walk_down");
-			}
-		}
-		else if (direction == Vector2.Zero)
-		{
-			animatedSprite2D.SpeedScale = 0;
-			animatedSprite2D.Frame = 0;
 		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (isMoving)
+		if (!isMoving)
 		{
-			if ((parentMovingNode.Position - targetPosition).LengthSquared() < 0.1)
-			{
-				isMoving = false;
-				parentMovingNode.GlobalPosition = targetPosition;
-			}
-			else
-			{
-				parentMovingNode.GlobalPosition = parentMovingNode.GlobalPosition.MoveToward(targetPosition, Speed);
-			}
+			return;
 		}
+
+		float sqrDistanceToTarget = (parentMovingNode.Position - targetPosition).LengthSquared();
+
+		if (sqrDistanceToTarget < 0.01f)
+		{
+			parentMovingNode.GlobalPosition = targetPosition;
+			StopCharacter();
+			return;
+		}
+
+		parentMovingNode.GlobalPosition = parentMovingNode.GlobalPosition.MoveToward(targetPosition, Speed);
+	}
+
+	public void StopCharacter()
+	{
+		isMoving = false;
+
+		// Pause animation on the first frame (that is treated as the idle animation)
+		animatedSprite2D.SpeedScale = 0;
+		animatedSprite2D.Frame = 0;
 	}
 
 	public void ForceSetTargetPosition(Vector2 pos)

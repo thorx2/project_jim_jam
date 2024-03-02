@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dkwerl2agket4"]
+[gd_scene load_steps=24 format=3 uid="uid://dkwerl2agket4"]
 
 [ext_resource type="Script" path="res://CoreGame/Systems/GameManager.cs" id="1_t7rrp"]
 [ext_resource type="PackedScene" uid="uid://df0ajvwd8amho" path="res://CoreGame/Systems/Characters/Prefabs/Player.tscn" id="2_w5l5r"]
